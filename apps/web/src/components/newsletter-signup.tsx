@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { subscribeNewsletter } from '@repo/api/brand'
+import { Button } from './ui/button'
 
 interface NewsletterSignupProps {
   className?: string
@@ -41,7 +42,7 @@ export function NewsletterSignup({ className = '', variant = 'default' }: Newsle
       <div className={`${className}`}>
         {status === 'success' ? (
           <div className="text-center">
-            <div className="text-green-400 mb-2">🎉 Success!</div>
+            <div className="text-green-400 mb-2">Success!</div>
             <p className="text-sm text-gray-300 mb-4">{message}</p>
             <button
               onClick={resetForm}
@@ -60,13 +61,14 @@ export function NewsletterSignup({ className = '', variant = 'default' }: Newsle
               className="flex-1 px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               disabled={status === 'loading'}
             />
-            <button
+            <Button
               type="submit"
               disabled={status === 'loading' || !email.trim()}
-              className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-medium rounded-lg hover:from-blue-400 hover:to-purple-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+              size="sm"
+              className="px-4 py-2 rounded-lg"
             >
-              {status === 'loading' ? '...' : '📧'}
-            </button>
+              {status === 'loading' ? '...' : 'Subscribe'}
+            </Button>
           </form>
         )}
         {status === 'error' && (
@@ -79,25 +81,25 @@ export function NewsletterSignup({ className = '', variant = 'default' }: Newsle
   return (
     <div className={`${className}`}>
       <div className="mx-auto max-w-2xl text-center">
-        <h3 className="text-2xl font-bold tracking-tight text-white sm:text-3xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-          Stay in the Loop! 📬
+        <h3 className="text-2xl font-bold tracking-tight text-white sm:text-3xl bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
+          Stay in the Loop!
         </h3>
         <p className="mt-4 text-lg leading-8 text-gray-300">
-          Get the latest updates, tips, and exclusive content delivered straight to your inbox! ✨
+          Get the latest updates, tips, and exclusive content delivered straight to your inbox!
         </p>
       </div>
 
       {status === 'success' ? (
         <div className="mx-auto mt-8 max-w-md text-center">
-          <div className="text-green-400 text-4xl mb-4">🎉</div>
+          <div className="text-green-400 text-2xl mb-4">Success!</div>
           <h4 className="text-xl font-semibold text-white mb-2">Success!</h4>
           <p className="text-gray-300 mb-6">{message}</p>
-          <button
+          <Button
             onClick={resetForm}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-500 to-teal-500 text-white font-semibold rounded-full hover:from-green-400 hover:to-teal-400 transition-all duration-200"
+            variant="primary"
           >
-            Subscribe Another Email 📧
-          </button>
+            Subscribe Another Email
+          </Button>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="mx-auto mt-8 max-w-md">
@@ -110,19 +112,20 @@ export function NewsletterSignup({ className = '', variant = 'default' }: Newsle
               className="flex-1 px-6 py-4 bg-gray-800/50 border border-gray-600 rounded-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm"
               disabled={status === 'loading'}
             />
-            <button
+            <Button
               type="submit"
               disabled={status === 'loading' || !email.trim()}
-              className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-full hover:from-blue-400 hover:to-purple-400 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+              size="lg"
+              className="px-8 py-4"
             >
-              {status === 'loading' ? '🔄 Subscribing...' : '🚀 Subscribe'}
-            </button>
+              {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
+            </Button>
           </div>
           {status === 'error' && (
             <p className="mt-4 text-center text-red-400">{message}</p>
           )}
           <p className="mt-4 text-center text-sm text-gray-400">
-            No spam, unsubscribe at any time. We respect your privacy! 🔒
+            No spam, unsubscribe at any time. We respect your privacy!
           </p>
         </form>
       )}

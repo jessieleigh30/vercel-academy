@@ -5,11 +5,10 @@ import { useState } from 'react'
 import { Button } from './ui/button'
 
 const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Gallery', href: '/gallery' },
-  { name: 'Contact', href: '/contact' },
-  { name: 'Blog', href: process.env.NEXT_PUBLIC_BLOG_URL || 'http://localhost:3001' },
+  { name: 'Home', href: process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000' },
+  { name: 'Blog', href: '/' },
+  { name: 'About', href: `${process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000'}/about` },
+  { name: 'Contact', href: `${process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000'}/contact` },
 ]
 
 export function Navigation() {
@@ -19,7 +18,7 @@ export function Navigation() {
     <header className="sticky top-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-700">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5">
+          <Link href={process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000'} className="-m-1.5 p-1.5">
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
               ACME
             </span>
@@ -61,7 +60,7 @@ export function Navigation() {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Button
-            href="/contact"
+            href={`${process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000'}/contact`}
             size="sm"
           >
             Get Started
@@ -75,7 +74,7 @@ export function Navigation() {
           <div className="fixed inset-0 z-50"></div>
           <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-700">
             <div className="flex items-center justify-between">
-              <Link href="/" className="-m-1.5 p-1.5">
+              <Link href={process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000'} className="-m-1.5 p-1.5">
                 <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
                   ACME
                 </span>
@@ -119,7 +118,7 @@ export function Navigation() {
                 </div>
                 <div className="py-6">
                   <Button
-                    href="/contact"
+                    href={`${process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000'}/contact`}
                     onClick={() => setMobileMenuOpen(false)}
                     className="-mx-3 block w-full"
                   >

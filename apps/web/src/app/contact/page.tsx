@@ -1,7 +1,7 @@
 import { ContactSection } from "./_contact-section"
-import { TeamSection } from "./_team-section"
 import { ContactForm } from "./_contact-form"
 import { fetchTeamMembers, fetchContactInfo } from '@repo/api/brand'
+import { TeamSection } from '../../components/ui/team-section'
 
 export default async function Contact() {
     const [members, contactInfo] = await Promise.all([
@@ -32,7 +32,13 @@ export default async function Contact() {
             <ContactForm />
             
             {/* Team Section */}
-            <TeamSection members={members} />
+            <TeamSection 
+              members={members} 
+              title="Our Amazing Team 🌟"
+              description="Meet the awesome people behind ACME Corporation 👋"
+              showContactButton={true}
+              className="bg-gradient-to-br from-green-900/20 to-teal-900/20 py-16 sm:py-24"
+            />
         </main>
     )
 }

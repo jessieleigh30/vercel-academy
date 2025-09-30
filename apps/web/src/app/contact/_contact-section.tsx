@@ -22,17 +22,17 @@ export function ContactSection({ contactInfo }: ContactSectionProps) {
                     {/* Contact Details */}
                     <div className="lg:col-span-2">
                         <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                            Get in Touch ✨
+                            Get in Touch
                         </h2>
                         <p className="mt-4 text-lg text-muted-foreground">
-                            We're here to help you with any questions or inquiries you may have. Drop us a line! 🚀
+                            We're here to help you with any questions or inquiries you may have. Drop us a line!
                         </p>
                         
                         <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
                             {/* Email */}
                             <div className="group">
                                 <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
-                                    📧 Email
+                                    Email
                                 </h3>
                                 <p className="mt-2 text-sm text-muted-foreground">
                                     <a 
@@ -47,7 +47,7 @@ export function ContactSection({ contactInfo }: ContactSectionProps) {
                             {/* Phone */}
                             <div className="group">
                                 <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
-                                    📱 Phone
+                                    Phone
                                 </h3>
                                 <p className="mt-2 text-sm text-muted-foreground">
                                     <a 
@@ -62,7 +62,7 @@ export function ContactSection({ contactInfo }: ContactSectionProps) {
                             {/* Address */}
                             <div className="sm:col-span-2">
                                 <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
-                                    🏢 Office
+                                    Office
                                 </h3>
                                 <p className="mt-2 text-sm text-muted-foreground">
                                     {contactInfo.address.street}<br />
@@ -74,7 +74,7 @@ export function ContactSection({ contactInfo }: ContactSectionProps) {
 
                         {/* Social Links */}
                         <div className="mt-8">
-                            <h3 className="text-sm font-semibold text-foreground">Follow Us 🌟</h3>
+                            <h3 className="text-sm font-semibold text-foreground">Follow Us</h3>
                             <div className="mt-4 flex space-x-4">
                                 {contactInfo.socialMedia.twitter && (
                                     <a
@@ -83,7 +83,7 @@ export function ContactSection({ contactInfo }: ContactSectionProps) {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        🐦 Twitter
+                                        Twitter
                                     </a>
                                 )}
                                 {contactInfo.socialMedia.linkedin && (
@@ -93,7 +93,7 @@ export function ContactSection({ contactInfo }: ContactSectionProps) {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        💼 LinkedIn
+                                        LinkedIn
                                     </a>
                                 )}
                                 {contactInfo.socialMedia.github && (
@@ -103,7 +103,7 @@ export function ContactSection({ contactInfo }: ContactSectionProps) {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        👨‍💻 GitHub
+                                        GitHub
                                     </a>
                                 )}
                             </div>
@@ -113,7 +113,7 @@ export function ContactSection({ contactInfo }: ContactSectionProps) {
                     {/* Business Hours */}
                     <div className="bg-card/30 backdrop-blur-sm rounded-xl p-6 border border-border">
                         <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                            🕒 Business Hours
+                            Business Hours
                         </h3>
                         <dl className="mt-4 space-y-3">
                             {businessHours.map(({ day, time }) => (

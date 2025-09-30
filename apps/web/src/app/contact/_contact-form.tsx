@@ -64,17 +64,17 @@ export function ContactForm() {
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl">
                     <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                        Send us a message 💌
+                        Send us a message
                     </h2>
                     <p className="mt-4 text-lg leading-8 text-muted-foreground">
-                        Have a question or want to work with us? We'd love to hear from you! ✨
+                        Have a question or want to work with us? We'd love to hear from you!
                     </p>
 
                     <form onSubmit={handleSubmit} className="mt-16">
                         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                             <div className="sm:col-span-2">
                                 <label htmlFor="name" className="block text-sm font-semibold leading-6 text-foreground">
-                                    🧑 Name *
+                                    Name *
                                 </label>
                                 <div className="mt-2.5">
                                     <input
@@ -92,7 +92,7 @@ export function ContactForm() {
 
                             <div>
                                 <label htmlFor="email" className="block text-sm font-semibold leading-6 text-foreground">
-                                    📧 Email *
+                                    Email *
                                 </label>
                                 <div className="mt-2.5">
                                     <input
@@ -110,7 +110,7 @@ export function ContactForm() {
 
                             <div>
                                 <label htmlFor="phone" className="block text-sm font-semibold leading-6 text-foreground">
-                                    📱 Phone
+                                    Phone
                                 </label>
                                 <div className="mt-2.5">
                                     <input
@@ -127,7 +127,7 @@ export function ContactForm() {
 
                             <div className="sm:col-span-2">
                                 <label htmlFor="subject" className="block text-sm font-semibold leading-6 text-foreground">
-                                    💭 Subject *
+                                    Subject *
                                 </label>
                                 <div className="mt-2.5">
                                     <input
@@ -145,7 +145,7 @@ export function ContactForm() {
 
                             <div className="sm:col-span-2">
                                 <label htmlFor="message" className="block text-sm font-semibold leading-6 text-foreground">
-                                    💬 Message *
+                                    Message *
                                 </label>
                                 <div className="mt-2.5">
                                     <textarea
@@ -161,7 +161,7 @@ export function ContactForm() {
                                     />
                                 </div>
                                 <p className="mt-1 text-sm text-muted-foreground">
-                                    ✨ Minimum 10 characters required
+                                    Minimum 10 characters required
                                 </p>
                             </div>
                         </div>
@@ -189,7 +189,7 @@ export function ContactForm() {
                                         : 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-400 hover:to-blue-400 hover:scale-[1.02] active:scale-[0.98]'
                                 }`}
                             >
-                                {isSubmitting ? '✈️ Sending...' : '🚀 Send Message'}
+                                {isSubmitting ? 'Sending...' : 'Send Message'}
                             </button>
                         </div>
                     </form>
