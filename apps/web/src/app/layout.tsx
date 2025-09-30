@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
 
 import './globals.css';
+import { Navigation } from '../components/navigation';
+import { Footer } from '../components/footer';
 
 export const metadata: Metadata = {
-  title: 'Vercel Academy Foundation - Web',
-  description: 'VAF Web',
+  title: 'ACME Corporation - Building the Future',
+  description: 'We create amazing digital experiences that make people smile! From creative designs to powerful code - we\'ve got you covered.',
 };
 
 export default function RootLayout({
@@ -14,7 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="container mx-auto px-4 py-8">{children}</body>
+      <body className="min-h-screen bg-gray-900">
+        <Navigation />
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
