@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { BlogPost } from '@repo/api/blog'
-import { Card } from './ui/card'
-import { Button } from './ui/button'
+import { Card } from './card'
+import { Button } from './button'
 
 interface BlogPostCardProps {
   post: BlogPost
@@ -35,7 +35,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
           className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
         <div className="absolute top-4 left-4">
-          <span className="inline-flex items-center rounded-full bg-blue-500/20 backdrop-blur-sm px-3 py-1 text-xs font-medium text-blue-400 border border-blue-500/30">
+          <span className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700 border border-blue-200">
             {post.category}
           </span>
         </div>
@@ -50,23 +50,23 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
             alt={post.author.name}
             width={32}
             height={32}
-            className="rounded-full ring-2 ring-gray-600"
+            className="rounded-full ring-2 ring-gray-200"
           />
           <div className="ml-3">
-            <p className="text-sm font-medium text-white">{post.author.name}</p>
-            <p className="text-xs text-gray-400">{formatDate(post.publishedAt)}</p>
+            <p className="text-sm font-medium text-gray-900">{post.author.name}</p>
+            <p className="text-xs text-gray-600">{formatDate(post.publishedAt)}</p>
           </div>
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-semibold text-white mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors duration-200">
+        <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors duration-200">
           <Link href={`/${post.slug}`}>
             {post.title}
           </Link>
         </h3>
 
         {/* Excerpt */}
-        <p className="text-gray-300 mb-4 line-clamp-3 flex-1">
+        <p className="text-gray-600 mb-4 line-clamp-3 flex-1">
           {post.excerpt}
         </p>
 
@@ -75,7 +75,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
           {post.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="inline-flex items-center rounded-md bg-green-500/20 px-2 py-1 text-xs font-medium text-green-400 border border-green-500/30"
+              className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 border border-blue-200"
             >
               #{tag}
             </span>
@@ -83,8 +83,8 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
         </div>
 
         {/* Meta Info & CTA */}
-        <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-700">
-          <div className="flex items-center gap-4 text-xs text-gray-400">
+        <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-200">
+          <div className="flex items-center gap-4 text-xs text-gray-600">
             <span>{post.readingTime} min read</span>
             <span>{formatNumber(post.views)} views</span>
             <span>{formatNumber(post.likes)} likes</span>

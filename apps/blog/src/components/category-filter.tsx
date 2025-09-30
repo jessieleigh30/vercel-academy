@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Button } from './ui/button'
+import { Button } from './button'
 
 interface CategoryFilterProps {
   categories: string[]

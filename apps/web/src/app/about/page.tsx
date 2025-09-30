@@ -1,7 +1,8 @@
 
 import { fetchTeamMembers, fetchCompanyStats } from '@repo/api/brand'
-import { TeamSection } from '../../components/ui/team-section'
-import { StatsCard, StatsGrid } from '../../components/ui/stats-card'
+import { TeamSection } from '../../components/team-section'
+import { StatsCard, StatsGrid } from '../../components/stats-card'
+import { Hero } from '@repo/ui/components/hero'
 
 export default async function AboutUsPage() {
     const [teamMembers, companyStats] = await Promise.all([
@@ -9,31 +10,21 @@ export default async function AboutUsPage() {
         fetchCompanyStats()
     ])
 
-    return (<div className="min-h-screen bg-background">
-            {/* Hero Section */}
-            <div className="bg-muted/30 py-16 sm:py-24">
-                <div className="mx-auto max-w-7xl px-6 lg:px-8">
-                    <div className="mx-auto max-w-2xl text-center">
-                        <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
-                            About ACME Corporation
-                        </h1>
-                        <p className="mt-6 text-lg leading-8 text-muted-foreground">
-                            We're a team of passionate professionals dedicated to building innovative solutions 
-                            that help businesses grow and succeed in the digital age.
-                        </p>
-                    </div>
-                </div>
-            </div>
+    return (<div className="min-h-screen bg-white">
+            <Hero 
+                title="About ACME Corporation"
+                description="We're a team of passionate professionals dedicated to building innovative solutions that help businesses grow and succeed in the digital age."
+            />
 
             {/* Stats Section */}
-            <div className="bg-background py-16 sm:py-24">
+            <div className="bg-white py-16 sm:py-24">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
                     <div className="mx-auto max-w-2xl lg:max-w-none">
                         <div className="text-center">
-                            <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                                 Our Impact
                             </h2>
-                            <p className="mt-4 text-lg leading-8 text-muted-foreground">
+                            <p className="mt-4 text-lg leading-8 text-gray-600">
                                 Numbers that tell our story
                             </p>
                         </div>
@@ -64,7 +55,7 @@ export default async function AboutUsPage() {
                 members={teamMembers} 
                 title="Meet Our Team"
                 description="The talented individuals driving our success"
-                className="bg-muted/30 py-16 sm:py-24"
+                className="bg-gray-50 py-16 sm:py-24"
             />
         </div>
     )

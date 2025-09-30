@@ -2,17 +2,17 @@ import Link from 'next/link'
 
 export function Footer() {
   return (
-    <footer className="bg-gray-900 border-t border-gray-700">
+    <footer className="bg-gray-50 border-t border-gray-200">
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           {/* Brand */}
           <div className="xl:col-span-1">
             <Link href={process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000'}>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold text-gray-900">
                 ACME
               </span>
             </Link>
-            <p className="mt-4 text-sm text-gray-400">
+            <p className="mt-4 text-sm text-gray-600">
               Insights, tutorials, and stories from the ACME team. Building the future, one post at a time.
             </p>
           </div>
@@ -20,12 +20,12 @@ export function Footer() {
           {/* Links */}
           <div className="mt-10 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div>
-              <h3 className="text-sm font-semibold text-white">Main Site</h3>
+              <h3 className="text-sm font-semibold text-gray-900">Main Site</h3>
               <ul className="mt-4 space-y-2">
                 <li>
                   <a 
                     href={process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000'}
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                    className="text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
                   >
                     Home
                   </a>
@@ -33,7 +33,7 @@ export function Footer() {
                 <li>
                   <a 
                     href={`${process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000'}/about`}
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                    className="text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
                   >
                     About
                   </a>
@@ -41,7 +41,7 @@ export function Footer() {
                 <li>
                   <a 
                     href={`${process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000'}/contact`}
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                    className="text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
                   >
                     Contact
                   </a>
@@ -49,12 +49,12 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-white">Blog</h3>
+              <h3 className="text-sm font-semibold text-gray-900">Blog</h3>
               <ul className="mt-4 space-y-2">
                 <li>
                   <Link 
                     href="/"
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                    className="text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
                   >
                     Latest Posts
                   </Link>
@@ -62,7 +62,7 @@ export function Footer() {
                 <li>
                   <Link 
                     href="/?category=technology"
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                    className="text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
                   >
                     Technology
                   </Link>
@@ -70,7 +70,7 @@ export function Footer() {
                 <li>
                   <Link 
                     href="/?category=design"
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
+                    className="text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
                   >
                     Design
                   </Link>
@@ -80,8 +80,8 @@ export function Footer() {
           </div>
         </div>
         
-        <div className="mt-8 pt-8 border-t border-gray-700 text-center">
-          <p className="text-sm text-gray-400">
+        <div className="mt-8 pt-8 border-t border-gray-200 text-center">
+          <p className="text-sm text-gray-600">
             © {new Date().getFullYear()} ACME Corporation. Made with love and lots of coffee
           </p>
         </div>

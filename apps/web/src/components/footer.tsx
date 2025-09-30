@@ -21,9 +21,9 @@ export async function Footer() {
   const contactInfo = await fetchContactInfo()
 
   return (
-    <footer className="bg-gray-900 border-t border-gray-700">
+    <footer className="bg-gray-50 border-t border-gray-200">
       {/* Newsletter Section */}
-      <div className="bg-gradient-to-r from-blue-900/20 to-green-900/20 py-16">
+      <div className="bg-white py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <NewsletterSignup variant="compact" className="max-w-md mx-auto" />
         </div>
@@ -35,30 +35,30 @@ export async function Footer() {
           {/* Company Info */}
           <div className="space-y-8">
             <div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold text-gray-900">
                 ACME
               </span>
-              <p className="text-gray-300 mt-4 text-sm leading-6">
+              <p className="text-gray-600 mt-4 text-sm leading-6">
                 Building the future, one pixel at a time. We create amazing digital experiences.
               </p>
             </div>
             
             {/* Contact Info */}
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm text-gray-300">
-                <span className="text-blue-400">Email:</span>
-                <a href={`mailto:${contactInfo.email}`} className="hover:text-white transition-colors">
+              <div className="flex items-center gap-2 text-sm text-gray-600">
+                <span className="text-gray-900 font-medium">Email:</span>
+                <a href={`mailto:${contactInfo.email}`} className="hover:text-gray-900 transition-colors">
                   {contactInfo.email}
                 </a>
               </div>
-              <div className="flex items-center gap-2 text-sm text-gray-300">
-                <span className="text-green-400">Phone:</span>
-                <a href={`tel:${contactInfo.phone}`} className="hover:text-white transition-colors">
+              <div className="flex items-center gap-2 text-sm text-gray-600">
+                <span className="text-gray-900 font-medium">Phone:</span>
+                <a href={`tel:${contactInfo.phone}`} className="hover:text-gray-900 transition-colors">
                   {contactInfo.phone}
                 </a>
               </div>
-              <div className="flex items-start gap-2 text-sm text-gray-300">
-                <span className="text-orange-400 mt-0.5">Address:</span>
+              <div className="flex items-start gap-2 text-sm text-gray-600">
+                <span className="text-gray-900 font-medium mt-0.5">Address:</span>
                 <div>
                   <div>{contactInfo.address.street}</div>
                   <div>{contactInfo.address.city}, {contactInfo.address.state} {contactInfo.address.zipCode}</div>
@@ -72,7 +72,7 @@ export async function Footer() {
               {contactInfo.socialMedia.twitter && (
                 <a
                   href={contactInfo.socialMedia.twitter}
-                  className="text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                  className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -83,7 +83,7 @@ export async function Footer() {
               {contactInfo.socialMedia.linkedin && (
                 <a
                   href={contactInfo.socialMedia.linkedin}
-                  className="text-gray-400 hover:text-blue-600 transition-colors duration-200"
+                  className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -94,7 +94,7 @@ export async function Footer() {
               {contactInfo.socialMedia.github && (
                 <a
                   href={contactInfo.socialMedia.github}
-                  className="text-gray-400 hover:text-white transition-colors duration-200"
+                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -105,7 +105,7 @@ export async function Footer() {
               {contactInfo.socialMedia.instagram && (
                 <a
                   href={contactInfo.socialMedia.instagram}
-                  className="text-gray-400 hover:text-pink-400 transition-colors duration-200"
+                  className="text-gray-600 hover:text-pink-600 transition-colors duration-200"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -116,7 +116,7 @@ export async function Footer() {
               {contactInfo.socialMedia.youtube && (
                 <a
                   href={contactInfo.socialMedia.youtube}
-                  className="text-gray-400 hover:text-red-500 transition-colors duration-200"
+                  className="text-gray-600 hover:text-red-600 transition-colors duration-200"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -131,11 +131,11 @@ export async function Footer() {
           <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
             <div className="md:grid md:grid-cols-2 md:gap-8">
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-white">Navigation</h3>
+                <h3 className="text-sm font-semibold leading-6 text-gray-900">Navigation</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.main.map((item) => (
                     <li key={item.name}>
-                      <Link href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white transition-colors duration-200">
+                      <Link href={item.href} className="text-sm leading-6 text-gray-600 hover:text-gray-900 transition-colors duration-200">
                         {item.name}
                       </Link>
                     </li>
@@ -143,11 +143,11 @@ export async function Footer() {
                 </ul>
               </div>
               <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-white">Services</h3>
+                <h3 className="text-sm font-semibold leading-6 text-gray-900">Services</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.services.map((item) => (
                     <li key={item.name}>
-                      <Link href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white transition-colors duration-200">
+                      <Link href={item.href} className="text-sm leading-6 text-gray-600 hover:text-gray-900 transition-colors duration-200">
                         {item.name}
                       </Link>
                     </li>
@@ -158,12 +158,12 @@ export async function Footer() {
             
             {/* Business Hours */}
             <div>
-              <h3 className="text-sm font-semibold leading-6 text-white">Business Hours</h3>
+              <h3 className="text-sm font-semibold leading-6 text-gray-900">Business Hours</h3>
               <ul role="list" className="mt-6 space-y-2">
                 {Object.entries(contactInfo.businessHours).map(([day, hours]) => (
                   <li key={day} className="flex justify-between text-sm">
-                    <span className="text-gray-300 capitalize">{day}</span>
-                    <span className={hours === 'closed' ? 'text-red-400' : 'text-green-400'}>
+                    <span className="text-gray-600 capitalize">{day}</span>
+                    <span className={hours === 'closed' ? 'text-red-600' : 'text-green-600'}>
                       {hours === 'closed' ? 'Closed' : `${hours.open} - ${hours.close}`}
                     </span>
                   </li>
@@ -176,13 +176,13 @@ export async function Footer() {
 
       {/* Bottom Border */}
       <div className="mx-auto max-w-7xl px-6 py-6 lg:px-8">
-        <div className="border-t border-gray-700 pt-6 md:flex md:items-center md:justify-between">
+        <div className="border-t border-gray-200 pt-6 md:flex md:items-center md:justify-between">
           <div className="flex space-x-6 md:order-2">
-            <p className="text-xs leading-5 text-gray-400">
+            <p className="text-xs leading-5 text-gray-600">
               Made with love and lots of coffee
             </p>
           </div>
-          <p className="mt-8 text-xs leading-5 text-gray-400 md:order-1 md:mt-0">
+          <p className="mt-8 text-xs leading-5 text-gray-600 md:order-1 md:mt-0">
             &copy; {new Date().getFullYear()} ACME Corporation. All rights reserved.
           </p>
         </div>

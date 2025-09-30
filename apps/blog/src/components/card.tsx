@@ -8,9 +8,9 @@ export interface CardProps {
 }
 
 const cardVariants = {
-  default: 'bg-gray-800/50 border border-gray-700',
-  glass: 'bg-gray-800/50 backdrop-blur-sm border border-gray-700',
-  elevated: 'bg-gray-800 border border-gray-600 shadow-lg'
+  default: 'bg-white border border-gray-200 shadow-sm',
+  glass: 'bg-white/95 backdrop-blur-sm border border-gray-200 shadow-sm',
+  elevated: 'bg-white border border-gray-200 shadow-lg'
 }
 
 export function Card({ 
@@ -21,7 +21,7 @@ export function Card({
 }: CardProps) {
   const baseClasses = 'rounded-xl overflow-hidden transition-all duration-300'
   const variantClasses = cardVariants[variant]
-  const hoverClasses = hover ? 'hover:bg-gray-800/70 hover:scale-105' : ''
+  const hoverClasses = hover ? 'hover:shadow-md hover:scale-105' : ''
   const combinedClasses = `${baseClasses} ${variantClasses} ${hoverClasses} ${className}`.trim()
 
   return (

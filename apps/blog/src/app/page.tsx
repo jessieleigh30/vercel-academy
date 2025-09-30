@@ -2,7 +2,8 @@ import { fetchPosts, fetchCategories, fetchPostsByCategory, searchPosts } from '
 import { BlogPostCard } from '../components/blog-post-card'
 import { CategoryFilter } from '../components/category-filter'
 import { SearchBar } from '../components/search-bar'
-import { Button } from '../components/ui/button'
+import { Button } from '../components/button'
+import { Hero } from '@repo/ui/components/hero'
 
 interface HomePageProps {
   searchParams: {
@@ -31,23 +32,14 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-gray-900">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-br from-blue-900/20 to-green-900/20 py-16 sm:py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
-              ACME Blog
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-300">
-              Insights, tutorials, and stories from our amazing team
-            </p>
-          </div>
-        </div>
-      </div>
+    <main className="min-h-screen bg-white">
+      <Hero 
+        title="ACME Blog"
+        description="Insights, tutorials, and stories from our amazing team"
+      />
 
       {/* Search & Filter */}
-      <div className="bg-gray-900 py-8">
+      <div className="bg-white py-8">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <SearchBar initialQuery={searchQuery} />
@@ -57,11 +49,11 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       </div>
 
       {/* Blog Posts Grid */}
-      <div className="bg-gray-900 py-16 sm:py-24">
+      <div className="bg-gray-50 py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-2">{getPageTitle()}</h2>
-            <p className="text-gray-400">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">{getPageTitle()}</h2>
+            <p className="text-gray-600">
               {posts.length === 0 
                 ? 'No posts found' 
                 : `${posts.length} post${posts.length !== 1 ? 's' : ''} found`
@@ -72,8 +64,8 @@ export default async function HomePage({ searchParams }: HomePageProps) {
           {posts.length === 0 ? (
             <div className="text-center py-16">
               <div className="text-6xl mb-4">📝</div>
-              <h3 className="text-xl font-semibold text-white mb-2">No posts found</h3>
-              <p className="text-gray-400 mb-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">No posts found</h3>
+              <p className="text-gray-600 mb-6">
                 {searchQuery 
                   ? `Try adjusting your search terms or browse by category instead.`
                   : `Check back soon for new content in this category.`

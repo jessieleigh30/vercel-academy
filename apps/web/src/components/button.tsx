@@ -13,9 +13,9 @@ export interface ButtonProps {
 }
 
 const buttonVariants = {
-  primary: 'bg-gradient-to-r from-blue-500 to-green-500 text-white shadow-lg hover:from-blue-400 hover:to-green-400',
-  secondary: 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white',
-  outline: 'border border-gray-600 text-gray-300 hover:bg-gray-800 hover:text-white'
+  primary: 'bg-gray-900 text-white shadow-sm hover:bg-gray-700',
+  secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200',
+  outline: 'border border-gray-300 text-gray-700 hover:bg-gray-50 hover:text-gray-900'
 }
 
 const buttonSizes = {

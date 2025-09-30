@@ -30,9 +30,9 @@ export function StatsCard({
 
   const getTrendColor = (direction: 'up' | 'down' | 'neutral') => {
     switch (direction) {
-      case 'up': return 'text-green-400'
-      case 'down': return 'text-red-400'
-      case 'neutral': return 'text-gray-400'
+      case 'up': return 'text-green-600'
+      case 'down': return 'text-red-600'
+      case 'neutral': return 'text-gray-500'
     }
   }
 
@@ -48,7 +48,7 @@ export function StatsCard({
     <Card className={`p-8 text-center ${className}`}>
       <div className="flex flex-col">
         {/* Value - Order first for visual hierarchy */}
-        <dd className="order-first text-3xl font-semibold tracking-tight text-white">
+        <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900">
           {formatValue(value)}
           {trend && (
             <span className={`ml-2 text-sm font-normal ${getTrendColor(trend.direction)}`}>
@@ -58,14 +58,14 @@ export function StatsCard({
         </dd>
         
         {/* Label */}
-        <dt className="text-sm font-semibold leading-6 text-gray-400 flex items-center justify-center gap-2">
+        <dt className="text-sm font-semibold leading-6 text-gray-600 flex items-center justify-center gap-2">
           {typeof icon === 'string' ? <span>{icon}</span> : icon}
           {label}
         </dt>
         
         {/* Optional Description */}
         {description && (
-          <div className="mt-2 text-xs text-gray-500">
+          <div className="mt-2 text-xs text-gray-600">
             {description}
           </div>
         )}

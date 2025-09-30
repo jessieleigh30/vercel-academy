@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { subscribeNewsletter } from '@repo/api/brand'
-import { Button } from './ui/button'
+import { Button } from './button'
 
 interface NewsletterSignupProps {
   className?: string
