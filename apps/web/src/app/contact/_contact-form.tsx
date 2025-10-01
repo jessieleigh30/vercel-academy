@@ -9,11 +9,12 @@ function SubmitButton({ pending }: { pending: boolean }) {
         <button
             type="submit"
             disabled={pending}
-            className={`block w-full rounded-lg px-3.5 py-2.5 text-center text-sm font-semibold shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-200 ${
+            className={`block w-full px-8 py-4 text-base font-black uppercase tracking-wide transition-all duration-200 ${
                 pending
-                    ? 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-400 hover:to-blue-400 hover:scale-[1.02] active:scale-[0.98]'
+                    ? 'bg-gray-400 text-gray-600 cursor-not-allowed'
+                    : 'bg-gray-900 text-white hover:bg-gray-800'
             }`}
+            style={{ fontFamily: 'var(--font-display)' }}
         >
             {pending ? 'Sending...' : 'Send Message'}
         </button>
@@ -32,13 +33,13 @@ export function ContactForm() {
     })
 
     return (
-        <div className="bg-gradient-to-br from-indigo-900/20 to-cyan-900/20 py-16 sm:py-24">
+        <div className="bg-white py-16 sm:py-24">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl">
-                    <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                        Send us a message
+                    <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tighter text-gray-900 leading-none mb-6" style={{ fontFamily: 'var(--font-display)' }}>
+                        Get in Touch
                     </h2>
-                    <p className="mt-4 text-lg leading-8 text-muted-foreground">
+                    <p className="text-xl text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>
                         Have a question or want to work with us? We'd love to hear from you!
                     </p>
 
@@ -52,7 +53,7 @@ export function ContactForm() {
                     <form action={formAction} className="mt-16">
                         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                             <div className="sm:col-span-2">
-                                <label htmlFor="name" className="block text-sm font-semibold leading-6 text-foreground">
+                                <label htmlFor="name" className="block text-sm font-semibold leading-6 text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>
                                     Name *
                                 </label>
                                 <div className="mt-2.5">
@@ -61,7 +62,7 @@ export function ContactForm() {
                                         name="name"
                                         id="name"
                                         required
-                                        className="block w-full rounded-lg bg-card/50 backdrop-blur-sm border border-border px-3.5 py-2 text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all duration-200 sm:text-sm sm:leading-6"
+                                        className="block w-full rounded-md border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm"
                                         placeholder="Your full name"
                                     />
                                     {state.errors?.name && (
@@ -71,7 +72,7 @@ export function ContactForm() {
                             </div>
 
                             <div>
-                                <label htmlFor="email" className="block text-sm font-semibold leading-6 text-foreground">
+                                <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>
                                     Email *
                                 </label>
                                 <div className="mt-2.5">
@@ -80,7 +81,7 @@ export function ContactForm() {
                                         name="email"
                                         id="email"
                                         required
-                                        className="block w-full rounded-lg bg-card/50 backdrop-blur-sm border border-border px-3.5 py-2 text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all duration-200 sm:text-sm sm:leading-6"
+                                        className="block w-full rounded-md border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm"
                                         placeholder="your.email@example.com"
                                     />
                                     {state.errors?.email && (
@@ -90,7 +91,7 @@ export function ContactForm() {
                             </div>
 
                             <div>
-                                <label htmlFor="phone" className="block text-sm font-semibold leading-6 text-foreground">
+                                <label htmlFor="phone" className="block text-sm font-semibold leading-6 text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>
                                     Phone
                                 </label>
                                 <div className="mt-2.5">
@@ -98,7 +99,7 @@ export function ContactForm() {
                                         type="tel"
                                         name="phone"
                                         id="phone"
-                                        className="block w-full rounded-lg bg-card/50 backdrop-blur-sm border border-border px-3.5 py-2 text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all duration-200 sm:text-sm sm:leading-6"
+                                        className="block w-full rounded-md border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm"
                                         placeholder="+1 (555) 123-4567"
                                     />
                                     {state.errors?.phone && (
@@ -108,7 +109,7 @@ export function ContactForm() {
                             </div>
 
                             <div className="sm:col-span-2">
-                                <label htmlFor="subject" className="block text-sm font-semibold leading-6 text-foreground">
+                                <label htmlFor="subject" className="block text-sm font-semibold leading-6 text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>
                                     Subject *
                                 </label>
                                 <div className="mt-2.5">
@@ -117,7 +118,7 @@ export function ContactForm() {
                                         name="subject"
                                         id="subject"
                                         required
-                                        className="block w-full rounded-lg bg-card/50 backdrop-blur-sm border border-border px-3.5 py-2 text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all duration-200 sm:text-sm sm:leading-6"
+                                        className="block w-full rounded-md border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm"
                                         placeholder="How can we help you?"
                                     />
                                     {state.errors?.subject && (
@@ -127,7 +128,7 @@ export function ContactForm() {
                             </div>
 
                             <div className="sm:col-span-2">
-                                <label htmlFor="message" className="block text-sm font-semibold leading-6 text-foreground">
+                                <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900" style={{ fontFamily: 'var(--font-body)' }}>
                                     Message *
                                 </label>
                                 <div className="mt-2.5">
@@ -136,15 +137,15 @@ export function ContactForm() {
                                         id="message"
                                         rows={4}
                                         required
-                                        className="block w-full rounded-lg bg-card/50 backdrop-blur-sm border border-border px-3.5 py-2 text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all duration-200 sm:text-sm sm:leading-6"
+                                        className="block w-full rounded-md border-gray-300 px-4 py-3 text-gray-900 shadow-sm focus:border-gray-900 focus:ring-gray-900 sm:text-sm"
                                         placeholder="Tell us more about your inquiry..."
                                         minLength={10}
                                     />
                                     {state.errors?.message && (
-                                        <p className="mt-1 text-sm text-red-400">{state.errors.message}</p>
+                                        <p className="mt-1 text-sm text-red-600">{state.errors.message}</p>
                                     )}
                                 </div>
-                                <p className="mt-1 text-sm text-muted-foreground">
+                                <p className="mt-1 text-sm text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>
                                     Minimum 10 characters required
                                 </p>
                             </div>
@@ -152,12 +153,12 @@ export function ContactForm() {
 
                         {/* Success/Error Messages from Server Action */}
                         {state.message && (
-                            <div className={`mt-6 rounded-lg p-4 backdrop-blur-sm border ${
-                                state.success 
-                                    ? 'bg-green-500/20 text-green-400 border-green-500/30' 
-                                    : 'bg-red-500/20 text-red-400 border-red-500/30'
+                            <div className={`mt-6 rounded-md p-4 border ${
+                                state.success
+                                    ? 'bg-green-50 text-green-800 border-green-200'
+                                    : 'bg-red-50 text-red-800 border-red-200'
                             }`}>
-                                <p className="text-sm font-medium">
+                                <p className="text-sm font-medium" style={{ fontFamily: 'var(--font-body)' }}>
                                     {state.message}
                                 </p>
                             </div>
