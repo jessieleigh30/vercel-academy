@@ -144,3 +144,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Skeleton loading animation */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

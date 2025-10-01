@@ -1,10 +1,12 @@
-import { useFormState, useFormStatus } from 'react-dom'
+'use client'
+
+import { useActionState, useFormStatus } from 'react'
 import { submitContactForm } from './actions'
 
 // Component for the submit button to show loading state
 function SubmitButton() {
     const { pending } = useFormStatus()
-    
+
     return (
         <button
             type="submit"
@@ -21,11 +23,11 @@ function SubmitButton() {
 }
 
 export function ContactForm() {
-    // useFormState hook manages server action state
+    // useActionState hook manages server action state
     // It returns [state, formAction] where:
     // - state: the return value from our server action
     // - formAction: the function to use as the form action
-    const [state, formAction] = useFormState(submitContactForm, {
+    const [state, formAction] = useActionState(submitContactForm, {
         success: false,
         message: ''
     })

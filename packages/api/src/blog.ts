@@ -116,11 +116,13 @@ export async function fetchPosts(limit = 10, offset = 0): Promise<BlogPost[]> {
  * Fetch blog posts by category
  * @param category - Category name to filter by
  * @param limit - Number of posts to return (default: 10)
+ * @param offset - Number of posts to skip (default: 0)
  * @returns Array of blog posts in the specified category
  */
 export async function fetchPostsByCategory(
   category: string,
-  limit = 10
+  limit = 10,
+  offset = 0
 ): Promise<BlogPost[]> {
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 300));
@@ -129,7 +131,7 @@ export async function fetchPostsByCategory(
   const categoryPosts = allPosts
     .filter((post) => post.category.toLowerCase() === category.toLowerCase())
     .sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime())
-    .slice(0, limit);
+    .slice(offset, offset + limit);
 
   // If no posts found in category, generate some
   if (categoryPosts.length === 0) {
@@ -245,11 +247,13 @@ export async function fetchCategories(): Promise<string[]> {
  * Search posts by query
  * @param query - Search query
  * @param limit - Number of results to return (default: 10)
+ * @param offset - Number of results to skip (default: 0)
  * @returns Array of matching blog posts
  */
 export async function searchPosts(
   query: string,
-  limit = 10
+  limit = 10,
+  offset = 0
 ): Promise<BlogPost[]> {
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 400));
@@ -278,7 +282,54 @@ export async function searchPosts(
       // Then sort by date
       return b.publishedAt.getTime() - a.publishedAt.getTime();
     })
-    .slice(0, limit);
+    .slice(offset, offset + limit);
 
   return searchResults;
+}
+
+/**
+ * Get total count of all posts
+ * @returns Total number of posts
+ */
+export async function getTotalPostCount(): Promise<number> {
+  // Simulate API delay
+  await new Promise((resolve) => setTimeout(resolve, 100));
+  return getAllPosts().length;
+}
+
+/**
+ * Get total count of posts in a category
+ * @param category - Category name to filter by
+ * @returns Total number of posts in the category
+ */
+export async function getTotalPostCountByCategory(category: string): Promise<number> {
+  // Simulate API delay
+  await new Promise((resolve) => setTimeout(resolve, 100));
+
+  const allPosts = getAllPosts();
+  return allPosts.filter(
+    (post) => post.category.toLowerCase() === category.toLowerCase()
+  ).length;
+}
+
+/**
+ * Get total count of posts matching search query
+ * @param query - Search query
+ * @returns Total number of posts matching the query
+ */
+export async function getTotalPostCountBySearch(query: string): Promise<number> {
+  // Simulate API delay
+  await new Promise((resolve) => setTimeout(resolve, 100));
+
+  const allPosts = getAllPosts();
+  const lowerQuery = query.toLowerCase();
+
+  return allPosts.filter(
+    (post) =>
+      post.title.toLowerCase().includes(lowerQuery) ||
+      post.excerpt.toLowerCase().includes(lowerQuery) ||
+      post.content.toLowerCase().includes(lowerQuery) ||
+      post.tags.some((tag) => tag.toLowerCase().includes(lowerQuery)) ||
+      post.category.toLowerCase().includes(lowerQuery)
+  ).length;
 }
