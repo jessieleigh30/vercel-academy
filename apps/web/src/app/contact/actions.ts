@@ -13,22 +13,26 @@ interface ContactFormData {
 }
 
 // Define the return type for our server action
-type ActionResult = {
+export type ActionResult = {
   success: boolean
   message: string
   errors?: Record<string, string>
 }
 
 /**
- * Server Action for handling contact form submissions
- * 
+ * Server Action for handling contact form submissions with useActionState
+ *
  * Key concepts:
  * 1. 'use server' directive marks this as a server-only function
- * 2. Receives FormData object (not JSON like fetch calls)
- * 3. Performs validation on the server
- * 4. Can redirect, revalidate, or return data
+ * 2. useActionState requires signature: (prevState, formData)
+ * 3. Receives FormData object (not JSON like fetch calls)
+ * 4. Performs validation on the server
+ * 5. Can redirect, revalidate, or return data
  */
-export async function submitContactForm(formData: FormData): Promise<ActionResult> {
+export async function submitContactForm(
+  prevState: ActionResult,
+  formData: FormData
+): Promise<ActionResult> {
   // Step 1: Extract data from FormData
   // FormData.get() returns string | File | null, so we need type assertions
   const data: ContactFormData = {

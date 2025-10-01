@@ -102,7 +102,7 @@ const getAllPosts = (): BlogPost[] => {
  */
 export async function fetchPosts(limit = 10, offset = 0): Promise<BlogPost[]> {
   // Simulate API delay
-  await new Promise((resolve) => setTimeout(resolve, 300));
+  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   const allPosts = getAllPosts();
   const sortedPosts = allPosts.sort(
@@ -125,7 +125,7 @@ export async function fetchPostsByCategory(
   offset = 0
 ): Promise<BlogPost[]> {
   // Simulate API delay
-  await new Promise((resolve) => setTimeout(resolve, 300));
+  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   const allPosts = getAllPosts();
   const categoryPosts = allPosts
@@ -150,7 +150,7 @@ export async function fetchPostsByCategory(
  */
 export async function fetchPostBySlug(slug: string): Promise<BlogPost | null> {
   // Simulate API delay
-  await new Promise((resolve) => setTimeout(resolve, 200));
+  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   const allPosts = getAllPosts();
   const post = allPosts.find((p) => p.slug === slug);
@@ -256,7 +256,7 @@ export async function searchPosts(
   offset = 0
 ): Promise<BlogPost[]> {
   // Simulate API delay
-  await new Promise((resolve) => setTimeout(resolve, 400));
+  await new Promise((resolve) => setTimeout(resolve, 3000));
 
   const allPosts = getAllPosts();
   const lowerQuery = query.toLowerCase();

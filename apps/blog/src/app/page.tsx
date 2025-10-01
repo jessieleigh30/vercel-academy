@@ -12,7 +12,6 @@ import { BlogPostCard } from '../components/blog-post-card'
 import { CategoryFilter } from '../components/category-filter'
 import { SearchBar } from '../components/search-bar'
 import { Button } from '../components/button'
-import { Hero } from '@repo/ui/components/hero'
 import { Pagination } from '../components/pagination'
 
 const POSTS_PER_PAGE = 12
@@ -100,11 +99,6 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
   return (
     <main className="min-h-screen bg-white">
-      <Hero 
-        title="ACME Blog"
-        description="Insights, tutorials, and stories from our amazing team"
-      />
-
       {/* Search & Filter */}
       <div className="bg-gray-50 py-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">

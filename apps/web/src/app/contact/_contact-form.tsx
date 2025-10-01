@@ -1,12 +1,10 @@
 'use client'
 
-import { useActionState, useFormStatus } from 'react'
+import { useActionState } from 'react'
 import { submitContactForm } from './actions'
 
-// Component for the submit button to show loading state
-function SubmitButton() {
-    const { pending } = useFormStatus()
-
+// Component for the submit button
+function SubmitButton({ pending }: { pending: boolean }) {
     return (
         <button
             type="submit"
@@ -24,10 +22,11 @@ function SubmitButton() {
 
 export function ContactForm() {
     // useActionState hook manages server action state
-    // It returns [state, formAction] where:
+    // It returns [state, formAction, isPending] where:
     // - state: the return value from our server action
     // - formAction: the function to use as the form action
-    const [state, formAction] = useActionState(submitContactForm, {
+    // - isPending: boolean indicating if the action is currently running
+    const [state, formAction, isPending] = useActionState(submitContactForm, {
         success: false,
         message: ''
     })
@@ -165,7 +164,7 @@ export function ContactForm() {
                         )}
 
                         <div className="mt-10">
-                            <SubmitButton />
+                            <SubmitButton pending={isPending} />
                         </div>
                     </form>
                 </div>
