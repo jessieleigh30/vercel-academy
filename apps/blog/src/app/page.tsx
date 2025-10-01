@@ -39,8 +39,14 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       />
 
       {/* Search & Filter */}
-      <div className="bg-white py-8">
+      <div className="bg-gray-50 py-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-black uppercase tracking-tighter text-gray-900" style={{ fontFamily: 'var(--font-display)' }}>
+              Find Content
+            </h2>
+            <div className="mt-4 h-1 w-16 bg-blue-600 mx-auto"></div>
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <SearchBar initialQuery={searchQuery} />
             <CategoryFilter categories={categories} />
@@ -49,23 +55,28 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       </div>
 
       {/* Blog Posts Grid */}
-      <div className="bg-gray-50 py-16 sm:py-24">
+      <div className="bg-white py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">{getPageTitle()}</h2>
-            <p className="text-gray-600">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tighter text-gray-900 leading-none" style={{ fontFamily: 'var(--font-display)' }}>
+              {getPageTitle()}
+            </h2>
+            <p className="mt-6 text-xl text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>
               {posts.length === 0 
                 ? 'No posts found' 
                 : `${posts.length} post${posts.length !== 1 ? 's' : ''} found`
               }
             </p>
+            <div className="mt-8 h-1 w-24 bg-blue-600 mx-auto"></div>
           </div>
           
           {posts.length === 0 ? (
-            <div className="text-center py-16">
-              <div className="text-6xl mb-4">📝</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">No posts found</h3>
-              <p className="text-gray-600 mb-6">
+            <div className="text-center py-20">
+              <div className="text-8xl mb-8 opacity-50">📝</div>
+              <h3 className="text-2xl font-black uppercase tracking-tighter text-gray-900 mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+                No Posts Found
+              </h3>
+              <p className="text-lg text-gray-600 mb-8 max-w-md mx-auto" style={{ fontFamily: 'var(--font-body)' }}>
                 {searchQuery 
                   ? `Try adjusting your search terms or browse by category instead.`
                   : `Check back soon for new content in this category.`
@@ -79,7 +90,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
               </Button>
             </div>
           ) : (
-            <div className="mx-auto grid max-w-2xl grid-cols-1 gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3">
               {posts.map((post) => (
                 <BlogPostCard key={post.id} post={post} />
               ))}

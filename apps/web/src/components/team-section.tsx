@@ -16,157 +16,152 @@ export function TeamSection({
   title = "Meet Our Team",
   description = "The talented individuals driving our success",
   variant = 'default',
-  columns = 4,
+  columns = 3,
   showContactButton = false,
   className = ''
 }: TeamSectionProps) {
-  const getGridCols = (cols: number) => {
-    const colsMap = {
-      2: 'sm:grid-cols-2',
-      3: 'sm:grid-cols-2 lg:grid-cols-3',
-      4: 'sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-4',
-      5: 'sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5'
-    }
-    return colsMap[cols] || colsMap[4]
-  }
-
-  const getImageSize = (variant: string) => {
-    switch (variant) {
-      case 'compact': return 'h-16 w-16'
-      case 'detailed': return 'h-32 w-32'
-      default: return 'h-24 w-24'
-    }
-  }
-
-  const getSpacing = (variant: string) => {
-    switch (variant) {
-      case 'compact': return 'gap-x-4 gap-y-8'
-      case 'detailed': return 'gap-x-8 gap-y-20'
-      default: return 'gap-x-8 gap-y-16'
-    }
+  const getCardClass = (index: number) => {
+    // Create varied heights for dynamic layout
+    const heightVariants = [
+      "min-h-[400px]", // Standard
+      "min-h-[450px]", // Taller
+      "min-h-[380px]", // Shorter
+      "min-h-[420px]", // Medium
+    ]
+    
+    const heightClass = heightVariants[index % heightVariants.length]
+    
+    // All cards start white, go dark on hover with subtle fade
+    const cardClass = `group relative transition-all duration-700 hover:scale-[1.02] ${heightClass} bg-white border border-gray-100 hover:bg-gradient-to-br hover:from-gray-800 hover:to-gray-700`
+    
+    return cardClass
   }
 
   return (
-    <div className={className}>
+    <div className={`bg-gray-50 py-16 sm:py-24 ${className}`}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
-            {title} 🌟
+        <div className="mx-auto max-w-2xl text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tighter text-gray-900 leading-none" style={{ fontFamily: 'var(--font-display)' }}>
+            {title}
           </h2>
-          <p className="mt-4 text-lg leading-8 text-gray-300">
+          <p className="mt-6 text-xl text-gray-600 leading-relaxed" style={{ fontFamily: 'var(--font-body)' }}>
             {description}
           </p>
+          <div className="mt-8 h-1 w-24 bg-blue-600 mx-auto"></div>
         </div>
 
         {/* Team Grid */}
-        <ul className={`mx-auto mt-16 grid max-w-2xl grid-cols-1 ${getSpacing(variant)} ${getGridCols(columns)}`}>
-          {members.map((member) => (
-            <li key={member.id}>
-              <div className="text-center group">
-                <div className="relative">
-                  <Image
-                    className={`mx-auto ${getImageSize(variant)} rounded-full ring-2 ring-gray-600 group-hover:ring-blue-400/50 transition-all duration-200`}
-                    src={member.avatar}
-                    alt={member.name}
-                    width={variant === 'detailed' ? 128 : variant === 'compact' ? 64 : 96}
-                    height={variant === 'detailed' ? 128 : variant === 'compact' ? 64 : 96}
-                  />
-                  {variant !== 'compact' && (
-                    <div className="absolute -bottom-2 -right-2 bg-green-500 rounded-full p-1">
-                      <span className="text-xs">✨</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {members.map((member, index) => {
+            const cardClass = getCardClass(index)
+            
+            return (
+              <div key={member.id} className={cardClass}>
+                <div className="p-8 h-full flex flex-col text-center">
+                  {/* Member Photo */}
+                  <div className="mb-8">
+                    <div className="relative inline-block">
+                      <Image
+                        className="w-32 h-32 rounded-none object-cover border-4 border-white shadow-lg group-hover:scale-105 transition-transform duration-200"
+                        src={member.avatar}
+                        alt={member.name}
+                        width={128}
+                        height={128}
+                      />
+                      <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-blue-600 group-hover:bg-blue-400 transition-colors duration-700 flex items-center justify-center">
+                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                      </div>
                     </div>
-                  )}
-                </div>
+                  </div>
 
-                {/* Member Info */}
-                <h3 className="mt-6 text-base font-semibold leading-7 tracking-tight text-white">
-                  {member.name}
-                </h3>
-                <p className="text-sm leading-6 text-gray-300">{member.role}</p>
-                <p className="text-sm leading-6 text-gray-400">{member.department}</p>
-
-                {/* Additional Info for non-compact variants */}
-                {variant !== 'compact' && (
-                  <div className="mt-4">
-                    <p className="text-xs leading-5 text-gray-400">
-                      {member.yearsOfExperience} years experience
+                  {/* Member Info */}
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-black uppercase tracking-tighter leading-tight mb-2 text-gray-900 group-hover:text-white transition-colors duration-700" style={{ fontFamily: 'var(--font-display)' }}>
+                      {member.name}
+                    </h3>
+                    <p className="text-lg font-medium mb-1 text-blue-600 group-hover:text-blue-300 transition-colors duration-700" style={{ fontFamily: 'var(--font-body)' }}>
+                      {member.role}
+                    </p>
+                    <p className="text-sm uppercase tracking-wide mb-6 text-gray-600 group-hover:text-gray-400 transition-colors duration-700" style={{ fontFamily: 'var(--font-display)' }}>
+                      {member.department}
                     </p>
 
+                    {/* Experience & Skills */}
+                    <div className="text-sm font-medium mb-6 text-gray-700 group-hover:text-gray-300 transition-colors duration-700" style={{ fontFamily: 'var(--font-body)' }}>
+                      {member.yearsOfExperience} Years Experience
+                    </div>
+
                     {/* Skills */}
-                    <div className="mt-2 flex flex-wrap justify-center gap-1">
-                      {member.skills.slice(0, variant === 'detailed' ? 5 : 3).map((skill) => (
+                    <div className="flex flex-wrap justify-center gap-2 mb-6">
+                      {member.skills.slice(0, 3).map((skill) => (
                         <span
                           key={skill}
-                          className="inline-flex items-center rounded-md bg-blue-500/20 px-2 py-1 text-xs font-medium text-blue-400 border border-blue-500/30"
+                          className="inline-flex items-center px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-none bg-blue-50 text-blue-700 border border-blue-200 group-hover:bg-white/10 group-hover:text-white group-hover:border-white/20 transition-all duration-700"
+                          style={{ fontFamily: 'var(--font-display)' }}
                         >
                           {skill}
                         </span>
                       ))}
                     </div>
+                  </div>
 
-                    {/* Contact Button */}
+                  {/* Contact & Social */}
+                  <div className="mt-auto">
                     {showContactButton && (
-                      <div className="mt-4">
+                      <div className="mb-4">
                         <a
                           href={`mailto:${member.email}`}
-                          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-green-500/20 text-green-400 hover:bg-green-500/30 hover:text-green-300 transition-all duration-200"
+                          className="inline-flex items-center px-6 py-3 text-sm font-bold uppercase tracking-wider bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200"
+                          style={{ fontFamily: 'var(--font-display)' }}
                         >
-                          📧 Contact
+                          Get In Touch
                         </a>
                       </div>
                     )}
 
-                    {/* Detailed variant extras */}
-                    {variant === 'detailed' && (
-                      <div className="mt-4">
-                        {member.bio && (
-                          <p className="text-xs text-gray-400 line-clamp-3">
-                            {member.bio}
-                          </p>
-                        )}
-                        
-                        {/* Social Links */}
-                        <div className="mt-3 flex justify-center gap-2">
-                          {member.linkedin && (
-                            <a
-                              href={member.linkedin}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-gray-400 hover:text-blue-400 transition-colors duration-200"
-                            >
-                              💼
-                            </a>
-                          )}
-                          {member.twitter && (
-                            <a
-                              href={member.twitter}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-gray-400 hover:text-blue-400 transition-colors duration-200"
-                            >
-                              🐦
-                            </a>
-                          )}
-                          {member.github && (
-                            <a
-                              href={member.github}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-gray-400 hover:text-white transition-colors duration-200"
-                            >
-                              👨‍💻
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                    )}
+                    {/* Social Links */}
+                    <div className="flex justify-center gap-4">
+                      {member.linkedin && (
+                        <a
+                          href={member.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm font-medium text-gray-600 hover:text-blue-600 group-hover:text-gray-400 group-hover:hover:text-blue-300 transition-colors duration-700"
+                          style={{ fontFamily: 'var(--font-body)' }}
+                        >
+                          LinkedIn
+                        </a>
+                      )}
+                      {member.twitter && (
+                        <a
+                          href={member.twitter}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm font-medium text-gray-600 hover:text-blue-600 group-hover:text-gray-400 group-hover:hover:text-blue-300 transition-colors duration-700"
+                          style={{ fontFamily: 'var(--font-body)' }}
+                        >
+                          Twitter
+                        </a>
+                      )}
+                      {member.github && (
+                        <a
+                          href={member.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm font-medium text-gray-600 hover:text-gray-900 group-hover:text-gray-400 group-hover:hover:text-white transition-colors duration-700"
+                          style={{ fontFamily: 'var(--font-body)' }}
+                        >
+                          GitHub
+                        </a>
+                      )}
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
-            </li>
-          ))}
-        </ul>
+            )
+          })}
+        </div>
       </div>
     </div>
   )
