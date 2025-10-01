@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
-import { Oswald, Inter, JetBrains_Mono } from 'next/font/google';
+import { Prata, Inter, JetBrains_Mono } from 'next/font/google';
 
 import './globals.css';
 import { Navigation } from '../components/navigation';
 import { Footer } from '../components/footer';
 
-const oswald = Oswald({
+const prata = Prata({
+  weight: '400',
   subsets: ['latin'],
   variable: '--font-display',
   display: 'swap',
@@ -34,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${oswald.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${prata.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen bg-white font-body antialiased">
         <Navigation />
         <main>{children}</main>
