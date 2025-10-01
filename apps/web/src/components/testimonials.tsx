@@ -55,7 +55,7 @@ export function Testimonials({
                 </div>
                 
                 {/* Quote */}
-                <blockquote className="text-1xl sm:text-2xl font-medium text-gray-900 leading-relaxed mb-8" style={{ fontFamily: 'var(--font-body)' }}>
+                <blockquote className="text-lg text-gray-600 leading-relaxed mb-8" style={{ fontFamily: 'var(--font-body)' }}>
                   "{testimonial.content}"
                 </blockquote>
                 
