@@ -29,17 +29,11 @@ export default async function HomePage() {
         }}
       />
 
-      {/* Stats */}
-      <StatsSection stats={companyStats} />
 
-      {/* Services */}
       <Services services={services} />
-
-      {/* Testimonials */}
-      <Testimonials testimonials={testimonials} />
-
-      {/* Client Showcase */}
-      <ClientShowcase clients={clients} />
+        <StatsSection stats={companyStats} />
+        <Testimonials testimonials={testimonials} />
+        <ClientShowcase clients={clients} />
 
     </main>
   );

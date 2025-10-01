@@ -18,11 +18,10 @@ interface TestimonialsProps {
   className?: string
 }
 
-export function Testimonials({ 
-  testimonials, 
+export function Testimonials({
+  testimonials,
   title = "What Our Clients Say",
-  subtitle = "Real stories from the amazing people we work with",
-  className = "" 
+  className = ""
 }: TestimonialsProps) {
   return (
     <div className={`bg-white py-24 sm:py-32 ${className}`}>
@@ -33,56 +32,44 @@ export function Testimonials({
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-gray-900 leading-none" style={{ fontFamily: 'var(--font-display)' }}>
               {title}
             </h2>
-            <p className="mt-8 text-xl text-gray-600 leading-relaxed" style={{ fontFamily: 'var(--font-body)' }}>
-              {subtitle}
-            </p>
-            <div className="mt-12 h-1 w-24 bg-blue-600"></div>
           </div>
 
           {/* Right Column - Testimonials */}
-          <div className="space-y-12 lg:space-y-16">
+          <div className="space-y-16">
             {testimonials.map((testimonial, index) => (
-              <div key={testimonial.id} className={`group ${index % 2 === 1 ? 'lg:ml-16' : ''}`}>
+              <div key={testimonial.id} className="border-b border-gray-200 pb-16 last:border-b-0">
                 {/* Rating */}
                 <div className="flex items-center mb-6">
-                  <div className="flex text-blue-600">
+                  <div className="flex text-gray-900">
                     {Array.from({ length: 5 }, (_, i) => (
-                      <span key={i} className={`text-2xl ${i < Math.floor(testimonial.rating) ? 'text-blue-600' : 'text-gray-300'}`}>
+                      <span key={i} className={`text-xl ${i < Math.floor(testimonial.rating) ? 'text-gray-900' : 'text-gray-300'}`}>
                         ★
                       </span>
                     ))}
                   </div>
                 </div>
-                
+
                 {/* Quote */}
                 <blockquote className="text-lg text-gray-600 leading-relaxed mb-8" style={{ fontFamily: 'var(--font-body)' }}>
                   "{testimonial.content}"
                 </blockquote>
-                
+
                 {/* Author */}
                 <div className="flex items-center">
                   <img
-                    className="h-16 w-16 rounded-full ring-4 ring-white shadow-lg"
+                    className="h-12 w-12 rounded-full"
                     src={testimonial.author.avatar}
                     alt={testimonial.author.name}
                   />
-                  <div className="ml-6">
-                    <div className="text-lg font-bold text-gray-900" style={{ fontFamily: 'var(--font-display)' }}>
+                  <div className="ml-4">
+                    <div className="text-base font-black uppercase tracking-tight text-gray-900" style={{ fontFamily: 'var(--font-display)' }}>
                       {testimonial.author.name}
                     </div>
-                    <div className="text-sm text-gray-600 font-medium uppercase tracking-wide" style={{ fontFamily: 'var(--font-body)' }}>
-                      {testimonial.author.role} • {testimonial.author.company}
+                    <div className="text-sm text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>
+                      {testimonial.author.role}, {testimonial.author.company}
                     </div>
                   </div>
                 </div>
-
-                {testimonial.featured && (
-                  <div className="mt-4">
-                    <span className="inline-flex items-center px-3 py-1 text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 rounded-none" style={{ fontFamily: 'var(--font-display)' }}>
-                      Featured Client
-                    </span>
-                  </div>
-                )}
               </div>
             ))}
           </div>

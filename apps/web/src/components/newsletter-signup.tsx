@@ -6,7 +6,7 @@ import { Button } from './button'
 
 interface NewsletterSignupProps {
   className?: string
-  variant?: 'default' | 'compact'
+  variant?: 'default' | 'compact' | 'dark'
 }
 
 export function NewsletterSignup({ className = '', variant = 'default' }: NewsletterSignupProps) {
@@ -35,6 +35,49 @@ export function NewsletterSignup({ className = '', variant = 'default' }: Newsle
   const resetForm = () => {
     setStatus('idle')
     setMessage('')
+  }
+
+  if (variant === 'dark') {
+    return (
+      <div className={`${className}`}>
+        {status === 'success' ? (
+          <div>
+            <div className="text-green-400 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Success!</div>
+            <p className="text-sm text-gray-300 mb-4" style={{ fontFamily: 'var(--font-body)' }}>{message}</p>
+            <button
+              onClick={resetForm}
+              className="text-sm text-gray-300 hover:text-white transition-colors duration-200"
+              style={{ fontFamily: 'var(--font-body)' }}
+            >
+              Subscribe another email
+            </button>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="flex gap-3">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent"
+              style={{ fontFamily: 'var(--font-body)' }}
+              disabled={status === 'loading'}
+            />
+            <button
+              type="submit"
+              disabled={status === 'loading' || !email.trim()}
+              className="px-6 py-3 bg-white text-gray-900 font-black uppercase tracking-wide hover:bg-gray-100 transition-colors disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              {status === 'loading' ? '...' : 'Subscribe'}
+            </button>
+          </form>
+        )}
+        {status === 'error' && (
+          <p className="mt-2 text-sm text-red-400" style={{ fontFamily: 'var(--font-body)' }}>{message}</p>
+        )}
+      </div>
+    )
   }
 
   if (variant === 'compact') {
