@@ -1,63 +1,34 @@
-'use client'
+import { useFormState, useFormStatus } from 'react-dom'
+import { submitContactForm } from './actions'
 
-import { useState } from 'react'
-import { submitContactForm } from '@repo/api/brand'
+// Component for the submit button to show loading state
+function SubmitButton() {
+    const { pending } = useFormStatus()
+    
+    return (
+        <button
+            type="submit"
+            disabled={pending}
+            className={`block w-full rounded-lg px-3.5 py-2.5 text-center text-sm font-semibold shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-200 ${
+                pending
+                    ? 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-400 hover:to-blue-400 hover:scale-[1.02] active:scale-[0.98]'
+            }`}
+        >
+            {pending ? 'Sending...' : 'Send Message'}
+        </button>
+    )
+}
 
 export function ContactForm() {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-        phone: '',
+    // useFormState hook manages server action state
+    // It returns [state, formAction] where:
+    // - state: the return value from our server action
+    // - formAction: the function to use as the form action
+    const [state, formAction] = useFormState(submitContactForm, {
+        success: false,
+        message: ''
     })
-    const [isSubmitting, setIsSubmitting] = useState(false)
-    const [submitStatus, setSubmitStatus] = useState<{
-        type: 'success' | 'error' | null
-        message: string
-    }>({ type: null, message: '' })
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault()
-        setIsSubmitting(true)
-        setSubmitStatus({ type: null, message: '' })
-
-        try {
-            const response = await submitContactForm({
-                name: formData.name,
-                email: formData.email,
-                subject: formData.subject,
-                message: formData.message,
-                phone: formData.phone || undefined,
-            })
-
-            setSubmitStatus({
-                type: 'success',
-                message: response.message
-            })
-            
-            // Reset form on success
-            setFormData({
-                name: '',
-                email: '',
-                subject: '',
-                message: '',
-                phone: '',
-            })
-        } catch (error) {
-            setSubmitStatus({
-                type: 'error',
-                message: error instanceof Error ? error.message : 'Something went wrong. Please try again.'
-            })
-        } finally {
-            setIsSubmitting(false)
-        }
-    }
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target
-        setFormData(prev => ({ ...prev, [name]: value }))
-    }
 
     return (
         <div className="bg-gradient-to-br from-indigo-900/20 to-cyan-900/20 py-16 sm:py-24">
@@ -70,7 +41,14 @@ export function ContactForm() {
                         Have a question or want to work with us? We'd love to hear from you!
                     </p>
 
-                    <form onSubmit={handleSubmit} className="mt-16">
+                    {/* 
+                    Key Server Actions concepts in this form:
+                    1. action={formAction} - Uses our server action instead of onSubmit
+                    2. No controlled components - React doesn't manage input values
+                    3. name attributes are crucial - they become FormData keys
+                    4. Form resets automatically on successful submission
+                    */}
+                    <form action={formAction} className="mt-16">
                         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                             <div className="sm:col-span-2">
                                 <label htmlFor="name" className="block text-sm font-semibold leading-6 text-foreground">
@@ -81,12 +59,13 @@ export function ContactForm() {
                                         type="text"
                                         name="name"
                                         id="name"
-                                        value={formData.name}
-                                        onChange={handleChange}
                                         required
                                         className="block w-full rounded-lg bg-card/50 backdrop-blur-sm border border-border px-3.5 py-2 text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all duration-200 sm:text-sm sm:leading-6"
                                         placeholder="Your full name"
                                     />
+                                    {state.errors?.name && (
+                                        <p className="mt-1 text-sm text-red-400">{state.errors.name}</p>
+                                    )}
                                 </div>
                             </div>
 
@@ -99,12 +78,13 @@ export function ContactForm() {
                                         type="email"
                                         name="email"
                                         id="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
                                         required
                                         className="block w-full rounded-lg bg-card/50 backdrop-blur-sm border border-border px-3.5 py-2 text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all duration-200 sm:text-sm sm:leading-6"
                                         placeholder="your.email@example.com"
                                     />
+                                    {state.errors?.email && (
+                                        <p className="mt-1 text-sm text-red-400">{state.errors.email}</p>
+                                    )}
                                 </div>
                             </div>
 
@@ -117,11 +97,12 @@ export function ContactForm() {
                                         type="tel"
                                         name="phone"
                                         id="phone"
-                                        value={formData.phone}
-                                        onChange={handleChange}
                                         className="block w-full rounded-lg bg-card/50 backdrop-blur-sm border border-border px-3.5 py-2 text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all duration-200 sm:text-sm sm:leading-6"
                                         placeholder="+1 (555) 123-4567"
                                     />
+                                    {state.errors?.phone && (
+                                        <p className="mt-1 text-sm text-red-400">{state.errors.phone}</p>
+                                    )}
                                 </div>
                             </div>
 
@@ -134,12 +115,13 @@ export function ContactForm() {
                                         type="text"
                                         name="subject"
                                         id="subject"
-                                        value={formData.subject}
-                                        onChange={handleChange}
                                         required
                                         className="block w-full rounded-lg bg-card/50 backdrop-blur-sm border border-border px-3.5 py-2 text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all duration-200 sm:text-sm sm:leading-6"
                                         placeholder="How can we help you?"
                                     />
+                                    {state.errors?.subject && (
+                                        <p className="mt-1 text-sm text-red-400">{state.errors.subject}</p>
+                                    )}
                                 </div>
                             </div>
 
@@ -152,13 +134,14 @@ export function ContactForm() {
                                         name="message"
                                         id="message"
                                         rows={4}
-                                        value={formData.message}
-                                        onChange={handleChange}
                                         required
                                         className="block w-full rounded-lg bg-card/50 backdrop-blur-sm border border-border px-3.5 py-2 text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-cyan-400/50 focus:border-cyan-400/50 transition-all duration-200 sm:text-sm sm:leading-6"
                                         placeholder="Tell us more about your inquiry..."
                                         minLength={10}
                                     />
+                                    {state.errors?.message && (
+                                        <p className="mt-1 text-sm text-red-400">{state.errors.message}</p>
+                                    )}
                                 </div>
                                 <p className="mt-1 text-sm text-muted-foreground">
                                     Minimum 10 characters required
@@ -166,31 +149,21 @@ export function ContactForm() {
                             </div>
                         </div>
 
-                        {/* Status Messages */}
-                        {submitStatus.type && (
+                        {/* Success/Error Messages from Server Action */}
+                        {state.message && (
                             <div className={`mt-6 rounded-lg p-4 backdrop-blur-sm border ${
-                                submitStatus.type === 'success' 
+                                state.success 
                                     ? 'bg-green-500/20 text-green-400 border-green-500/30' 
                                     : 'bg-red-500/20 text-red-400 border-red-500/30'
                             }`}>
                                 <p className="text-sm font-medium">
-                                    {submitStatus.message}
+                                    {state.message}
                                 </p>
                             </div>
                         )}
 
                         <div className="mt-10">
-                            <button
-                                type="submit"
-                                disabled={isSubmitting}
-                                className={`block w-full rounded-lg px-3.5 py-2.5 text-center text-sm font-semibold shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-200 ${
-                                    isSubmitting
-                                        ? 'bg-gray-600/50 text-gray-400 cursor-not-allowed'
-                                        : 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover:from-cyan-400 hover:to-blue-400 hover:scale-[1.02] active:scale-[0.98]'
-                                }`}
-                            >
-                                {isSubmitting ? 'Sending...' : 'Send Message'}
-                            </button>
+                            <SubmitButton />
                         </div>
                     </form>
                 </div>
