@@ -45,10 +45,10 @@ export function StatsCard({
   }
 
   return (
-    <Card className={`p-8 text-center ${className}`}>
+    <div className={`group p-8 text-center hover:scale-105 transition-transform duration-200 ${className}`}>
       <div className="flex flex-col">
-        {/* Value - Order first for visual hierarchy */}
-        <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900">
+        {/* Value - Bold display font */}
+        <dd className="order-first text-5xl sm:text-6xl font-black tracking-tighter text-gray-900 leading-none" style={{ fontFamily: 'var(--font-display)' }}>
           {formatValue(value)}
           {trend && (
             <span className={`ml-2 text-sm font-normal ${getTrendColor(trend.direction)}`}>
@@ -57,20 +57,20 @@ export function StatsCard({
           )}
         </dd>
         
-        {/* Label */}
-        <dt className="text-sm font-semibold leading-6 text-gray-600 flex items-center justify-center gap-2">
-          {typeof icon === 'string' ? <span>{icon}</span> : icon}
+        {/* Label - Clean body font */}
+        <dt className="mt-4 text-sm font-medium leading-6 text-gray-600 uppercase tracking-wide flex items-center justify-center gap-2" style={{ fontFamily: 'var(--font-body)' }}>
+          {typeof icon === 'string' ? <span className="text-blue-600">{icon}</span> : icon}
           {label}
         </dt>
         
         {/* Optional Description */}
         {description && (
-          <div className="mt-2 text-xs text-gray-600">
+          <div className="mt-2 text-xs text-gray-500" style={{ fontFamily: 'var(--font-body)' }}>
             {description}
           </div>
         )}
       </div>
-    </Card>
+    </div>
   )
 }
 
@@ -97,7 +97,7 @@ export function StatsGrid({
   }
 
   return (
-    <dl className={`grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center ${getGridCols(columns)} ${className}`}>
+    <dl className={`grid grid-cols-1 gap-8 lg:gap-12 text-center ${getGridCols(columns)} ${className}`}>
       {children}
     </dl>
   )

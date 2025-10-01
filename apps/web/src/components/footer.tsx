@@ -21,170 +21,163 @@ export async function Footer() {
   const contactInfo = await fetchContactInfo()
 
   return (
-    <footer className="bg-gray-50 border-t border-gray-200">
-      {/* Newsletter Section */}
-      <div className="bg-white py-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <NewsletterSignup variant="compact" className="max-w-md mx-auto" />
-        </div>
-      </div>
-
+    <footer className="bg-gray-900 text-white">
       {/* Main Footer Content */}
-      <div className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8 lg:py-24">
-        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-          {/* Company Info */}
-          <div className="space-y-8">
+      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
+        <div className="grid lg:grid-cols-12 gap-16 lg:gap-20">
+          {/* Company Info - Takes more space */}
+          <div className="lg:col-span-5 space-y-10">
             <div>
-              <span className="text-2xl font-bold text-gray-900">
+              <h2 className="text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-none mb-6" style={{ fontFamily: 'var(--font-display)' }}>
                 ACME
-              </span>
-              <p className="text-gray-600 mt-4 text-sm leading-6">
-                Building the future, one pixel at a time. We create amazing digital experiences.
+              </h2>
+              <p className="text-xl text-gray-300 leading-relaxed max-w-md" style={{ fontFamily: 'var(--font-body)' }}>
+                Building the future, one pixel at a time. We create amazing digital experiences that make people smile.
               </p>
+              <div className="mt-8 h-1 w-24 bg-blue-600"></div>
             </div>
-            
+
+            {/* Newsletter Integration */}
+            <div>
+              <h3 className="text-2xl font-black uppercase tracking-tighter text-white mb-6" style={{ fontFamily: 'var(--font-display)' }}>
+                Stay Updated
+              </h3>
+              <NewsletterSignup variant="dark" className="max-w-sm" />
+            </div>
+          </div>
+
+          {/* Contact & Navigation - Right Side */}
+          <div className="lg:col-span-7 grid md:grid-cols-2 gap-12 lg:gap-16">
             {/* Contact Info */}
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <span className="text-gray-900 font-medium">Email:</span>
-                <a href={`mailto:${contactInfo.email}`} className="hover:text-gray-900 transition-colors">
-                  {contactInfo.email}
-                </a>
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-xl font-black uppercase tracking-tighter text-white mb-6" style={{ fontFamily: 'var(--font-display)' }}>
+                  Get in Touch
+                </h3>
+                <div className="space-y-4">
+                  <div className="group">
+                    <a href={`mailto:${contactInfo.email}`} className="text-gray-300 hover:text-blue-400 transition-colors text-lg" style={{ fontFamily: 'var(--font-body)' }}>
+                      {contactInfo.email}
+                    </a>
+                  </div>
+                  <div className="group">
+                    <a href={`tel:${contactInfo.phone}`} className="text-gray-300 hover:text-blue-400 transition-colors text-lg" style={{ fontFamily: 'var(--font-body)' }}>
+                      {contactInfo.phone}
+                    </a>
+                  </div>
+                  <div className="text-gray-300 text-base" style={{ fontFamily: 'var(--font-body)' }}>
+                    <div>{contactInfo.address.street}</div>
+                    <div>{contactInfo.address.city}, {contactInfo.address.state} {contactInfo.address.zipCode}</div>
+                    <div>{contactInfo.address.country}</div>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <span className="text-gray-900 font-medium">Phone:</span>
-                <a href={`tel:${contactInfo.phone}`} className="hover:text-gray-900 transition-colors">
-                  {contactInfo.phone}
-                </a>
-              </div>
-              <div className="flex items-start gap-2 text-sm text-gray-600">
-                <span className="text-gray-900 font-medium mt-0.5">Address:</span>
-                <div>
-                  <div>{contactInfo.address.street}</div>
-                  <div>{contactInfo.address.city}, {contactInfo.address.state} {contactInfo.address.zipCode}</div>
-                  <div>{contactInfo.address.country}</div>
+
+              {/* Social Links */}
+              <div>
+                <h4 className="text-lg font-bold uppercase tracking-wide text-white mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+                  Follow Us
+                </h4>
+                <div className="flex space-x-6">
+                  {contactInfo.socialMedia.twitter && (
+                    <a
+                      href={contactInfo.socialMedia.twitter}
+                      className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-lg font-medium"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ fontFamily: 'var(--font-body)' }}
+                    >
+                      Twitter
+                    </a>
+                  )}
+                  {contactInfo.socialMedia.linkedin && (
+                    <a
+                      href={contactInfo.socialMedia.linkedin}
+                      className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-lg font-medium"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ fontFamily: 'var(--font-body)' }}
+                    >
+                      LinkedIn
+                    </a>
+                  )}
+                  {contactInfo.socialMedia.github && (
+                    <a
+                      href={contactInfo.socialMedia.github}
+                      className="text-gray-300 hover:text-white transition-colors duration-200 text-lg font-medium"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ fontFamily: 'var(--font-body)' }}
+                    >
+                      GitHub
+                    </a>
+                  )}
+                  {contactInfo.socialMedia.instagram && (
+                    <a
+                      href={contactInfo.socialMedia.instagram}
+                      className="text-gray-300 hover:text-pink-400 transition-colors duration-200 text-lg font-medium"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ fontFamily: 'var(--font-body)' }}
+                    >
+                      Instagram
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
 
-            {/* Social Links */}
-            <div className="flex space-x-6">
-              {contactInfo.socialMedia.twitter && (
-                <a
-                  href={contactInfo.socialMedia.twitter}
-                  className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="sr-only">Twitter</span>
-                  <span className="text-xl">Twitter</span>
-                </a>
-              )}
-              {contactInfo.socialMedia.linkedin && (
-                <a
-                  href={contactInfo.socialMedia.linkedin}
-                  className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="sr-only">LinkedIn</span>
-                  <span className="text-xl">LinkedIn</span>
-                </a>
-              )}
-              {contactInfo.socialMedia.github && (
-                <a
-                  href={contactInfo.socialMedia.github}
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="sr-only">GitHub</span>
-                  <span className="text-xl">GitHub</span>
-                </a>
-              )}
-              {contactInfo.socialMedia.instagram && (
-                <a
-                  href={contactInfo.socialMedia.instagram}
-                  className="text-gray-600 hover:text-pink-600 transition-colors duration-200"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="sr-only">Instagram</span>
-                  <span className="text-xl">Instagram</span>
-                </a>
-              )}
-              {contactInfo.socialMedia.youtube && (
-                <a
-                  href={contactInfo.socialMedia.youtube}
-                  className="text-gray-600 hover:text-red-600 transition-colors duration-200"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="sr-only">YouTube</span>
-                  <span className="text-xl">YouTube</span>
-                </a>
-              )}
-            </div>
-          </div>
-
-          {/* Navigation Links */}
-          <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-            <div className="md:grid md:grid-cols-2 md:gap-8">
+            {/* Navigation & Business Hours */}
+            <div className="space-y-10">
+              {/* Navigation */}
               <div>
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">Navigation</h3>
-                <ul role="list" className="mt-6 space-y-4">
+                <h3 className="text-xl font-black uppercase tracking-tighter text-white mb-6" style={{ fontFamily: 'var(--font-display)' }}>
+                  Navigation
+                </h3>
+                <ul className="space-y-3">
                   {navigation.main.map((item) => (
                     <li key={item.name}>
-                      <Link href={item.href} className="text-sm leading-6 text-gray-600 hover:text-gray-900 transition-colors duration-200">
+                      <Link href={item.href} className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-lg" style={{ fontFamily: 'var(--font-body)' }}>
                         {item.name}
                       </Link>
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">Services</h3>
-                <ul role="list" className="mt-6 space-y-4">
+
+              {/* Services */}
+              <div>
+                <h3 className="text-xl font-black uppercase tracking-tighter text-white mb-6" style={{ fontFamily: 'var(--font-display)' }}>
+                  Services
+                </h3>
+                <ul className="space-y-3">
                   {navigation.services.map((item) => (
                     <li key={item.name}>
-                      <Link href={item.href} className="text-sm leading-6 text-gray-600 hover:text-gray-900 transition-colors duration-200">
+                      <Link href={item.href} className="text-gray-300 hover:text-blue-400 transition-colors duration-200 text-lg" style={{ fontFamily: 'var(--font-body)' }}>
                         {item.name}
                       </Link>
                     </li>
                   ))}
                 </ul>
               </div>
-            </div>
-            
-            {/* Business Hours */}
-            <div>
-              <h3 className="text-sm font-semibold leading-6 text-gray-900">Business Hours</h3>
-              <ul role="list" className="mt-6 space-y-2">
-                {Object.entries(contactInfo.businessHours).map(([day, hours]) => (
-                  <li key={day} className="flex justify-between text-sm">
-                    <span className="text-gray-600 capitalize">{day}</span>
-                    <span className={hours === 'closed' ? 'text-red-600' : 'text-green-600'}>
-                      {hours === 'closed' ? 'Closed' : `${hours.open} - ${hours.close}`}
-                    </span>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Border */}
-      <div className="mx-auto max-w-7xl px-6 py-6 lg:px-8">
-        <div className="border-t border-gray-200 pt-6 md:flex md:items-center md:justify-between">
-          <div className="flex space-x-6 md:order-2">
-            <p className="text-xs leading-5 text-gray-600">
-              Made with love and lots of coffee
+      {/* Bottom Section */}
+      <div className="border-t border-gray-800">
+        <div className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+          <div className="md:flex md:items-center md:justify-between">
+            <div className="md:order-2">
+              <p className="text-base text-gray-400 font-medium" style={{ fontFamily: 'var(--font-body)' }}>
+                Made with love and lots of coffee ☕
+              </p>
+            </div>
+            <p className="mt-4 text-base text-gray-400 md:order-1 md:mt-0" style={{ fontFamily: 'var(--font-body)' }}>
+              &copy; {new Date().getFullYear()} ACME Corporation. All rights reserved.
             </p>
           </div>
-          <p className="mt-8 text-xs leading-5 text-gray-600 md:order-1 md:mt-0">
-            &copy; {new Date().getFullYear()} ACME Corporation. All rights reserved.
-          </p>
         </div>
       </div>
     </footer>

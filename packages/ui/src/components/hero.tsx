@@ -11,6 +11,8 @@ interface HeroProps {
     href: string
     isTextLink?: boolean
   }
+  backgroundImage?: string
+  layout?: 'centered' | 'split' | 'overlay'
   className?: string
 }
 
@@ -18,32 +20,138 @@ export function Hero({
   title, 
   description, 
   primaryButton, 
-  secondaryButton, 
+  secondaryButton,
+  backgroundImage,
+  layout = 'split',
   className = '' 
 }: HeroProps) {
+  if (layout === 'overlay' && backgroundImage) {
+    return (
+      <div className={`relative min-h-screen flex items-center ${className}`}>
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-gray-900"
+          style={{ backgroundImage: `url(${backgroundImage})` }}
+        >
+          <div className="absolute inset-0 bg-black/40"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="max-w-4xl">
+            <h1 className="font-display text-display-sm sm:text-display-md lg:text-display-lg font-black uppercase text-white tracking-tighter leading-none">
+              {title}
+            </h1>
+            <p className="mt-12 text-xl sm:text-2xl font-body leading-relaxed text-gray-100 font-normal max-w-2xl">
+              {description}
+            </p>
+            
+            {(primaryButton || secondaryButton) && (
+              <div className="mt-12 flex items-center gap-x-6">
+                {primaryButton && (
+                  <a
+                    href={primaryButton.href}
+                    className="bg-blue-600 text-white font-display font-bold px-10 py-5 rounded-none uppercase tracking-wide text-sm hover:bg-blue-700 transition-colors duration-200"
+                  >
+                    {primaryButton.text}
+                  </a>
+                )}
+                
+                {secondaryButton && (
+                  <a 
+                    href={secondaryButton.href} 
+                    className="text-white font-display font-bold uppercase tracking-wide text-sm hover:text-blue-400 transition-colors duration-200 border-b-2 border-white hover:border-blue-400"
+                  >
+                    {secondaryButton.text}
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  if (layout === 'split') {
+    return (
+      <div className={`bg-white ${className}`}>
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="py-24 lg:py-32">
+            <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+              {/* Text Content */}
+              <div className="lg:order-1">
+                <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase text-gray-900 tracking-tighter leading-none" style={{ fontFamily: 'var(--font-display)' }}>
+                  {title}
+                </h1>
+                <p className="mt-12 text-xl sm:text-2xl leading-relaxed text-gray-600 font-normal" style={{ fontFamily: 'var(--font-body)' }}>
+                  {description}
+                </p>
+                
+                {(primaryButton || secondaryButton) && (
+                  <div className="mt-12 flex items-center gap-x-6">
+                    {primaryButton && (
+                      <a
+                        href={primaryButton.href}
+                        className="bg-blue-600 text-white font-display font-bold px-10 py-5 rounded-none uppercase tracking-wide text-sm hover:bg-blue-700 transition-colors duration-200"
+                      >
+                        {primaryButton.text}
+                      </a>
+                    )}
+                    
+                    {secondaryButton && (
+                      <a 
+                        href={secondaryButton.href} 
+                        className="text-gray-900 font-display font-bold uppercase tracking-wide text-sm hover:text-blue-600 transition-colors duration-200 border-b-2 border-gray-900 hover:border-blue-600"
+                      >
+                        {secondaryButton.text}
+                      </a>
+                    )}
+                  </div>
+                )}
+              </div>
+              
+              {/* Image/Visual Space */}
+              <div className="lg:order-2">
+                {backgroundImage ? (
+                  <div className="aspect-square bg-gray-900 rounded-none overflow-hidden">
+                    <img 
+                      src={backgroundImage} 
+                      alt="" 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="aspect-square bg-gradient-to-br from-blue-600 to-blue-800 rounded-none flex items-center justify-center">
+                    <div className="text-6xl font-black text-white opacity-20">ACME</div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Fallback to centered layout
   return (
-    <div className={`bg-gray-50 py-16 sm:py-24 ${className}`}>
+    <div className={`bg-white py-24 sm:py-32 ${className}`}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+        <div className="mx-auto max-w-5xl text-center">
+          <h1 className="font-display text-display-sm sm:text-display-md lg:text-display-lg font-black uppercase text-gray-900 tracking-tighter leading-none">
             {title}
           </h1>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
+          <p className="mt-12 text-xl sm:text-2xl font-body leading-relaxed text-gray-600 font-normal max-w-3xl mx-auto">
             {description}
           </p>
           
           {(primaryButton || secondaryButton) && (
-            <div className="mt-10 flex items-center justify-center gap-x-6">
+            <div className="mt-12 flex items-center justify-center gap-x-6">
               {primaryButton && (
                 <a
                   href={primaryButton.href}
-                  className={`inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-all duration-200 hover:scale-105 active:scale-95 px-8 py-4 text-base ${
-                    primaryButton.variant === 'secondary'
-                      ? 'bg-gray-100 text-gray-900 hover:bg-gray-200 shadow-sm'
-                      : primaryButton.variant === 'outline'
-                      ? 'border border-gray-300 text-gray-700 hover:bg-gray-50 hover:text-gray-900'
-                      : 'bg-gray-900 text-white shadow-sm hover:bg-gray-700'
-                  }`}
+                  className="bg-blue-600 text-white font-display font-bold px-10 py-5 rounded-none uppercase tracking-wide text-sm hover:bg-blue-700 transition-colors duration-200"
                 >
                   {primaryButton.text}
                 </a>
@@ -52,14 +160,9 @@ export function Hero({
               {secondaryButton && (
                 <a 
                   href={secondaryButton.href} 
-                  className={
-                    secondaryButton.isTextLink 
-                      ? "text-sm font-semibold leading-6 text-gray-600 hover:text-gray-900 transition-colors duration-200"
-                      : `inline-flex items-center justify-center gap-2 font-semibold rounded-full transition-all duration-200 hover:scale-105 active:scale-95 px-8 py-4 text-base border border-gray-300 text-gray-700 hover:bg-gray-50 hover:text-gray-900`
-                  }
+                  className="text-gray-900 font-display font-bold uppercase tracking-wide text-sm hover:text-blue-600 transition-colors duration-200 border-b-2 border-gray-900 hover:border-blue-600"
                 >
                   {secondaryButton.text}
-                  {secondaryButton.isTextLink && <span aria-hidden="true">→</span>}
                 </a>
               )}
             </div>
