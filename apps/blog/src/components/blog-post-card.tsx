@@ -1,28 +1,28 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { BlogPost } from '@repo/api/blog'
-import { Card } from './card'
-import { Button } from './button'
+import Image from 'next/image';
+import Link from 'next/link';
+import { BlogPost } from '@repo/api/blog';
+import { Card } from './card';
+import { Button } from './button';
 
 interface BlogPostCardProps {
-  post: BlogPost
+  post: BlogPost;
 }
 
 export function BlogPostCard({ post }: BlogPostCardProps) {
   const formatDate = (date: Date) => {
     return new Intl.DateTimeFormat('en-US', {
       month: 'long',
-      day: 'numeric', 
-      year: 'numeric'
-    }).format(date)
-  }
+      day: 'numeric',
+      year: 'numeric',
+    }).format(date);
+  };
 
   const formatNumber = (num: number) => {
     if (num >= 1000) {
-      return `${(num / 1000).toFixed(1)}k`
+      return `${(num / 1000).toFixed(1)}k`;
     }
-    return num.toString()
-  }
+    return num.toString();
+  };
 
   return (
     <Card className="group relative overflow-hidden flex flex-col h-full">
@@ -60,15 +60,11 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
 
         {/* Title */}
         <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors duration-200">
-          <Link href={`/${post.slug}`}>
-            {post.title}
-          </Link>
+          <Link href={`/${post.slug}`}>{post.title}</Link>
         </h3>
 
         {/* Excerpt */}
-        <p className="text-gray-600 mb-4 line-clamp-3 flex-1">
-          {post.excerpt}
-        </p>
+        <p className="text-gray-600 mb-4 line-clamp-3 flex-1">{post.excerpt}</p>
 
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
@@ -89,9 +85,9 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
             <span>{formatNumber(post.views)} views</span>
             <span>{formatNumber(post.likes)} likes</span>
           </div>
-          <Button 
+          <Button
             href={`/${post.slug}`}
-            variant="outline" 
+            variant="outline"
             size="sm"
             className="opacity-0 group-hover:opacity-100 transition-opacity duration-200"
           >
@@ -100,5 +96,5 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
         </div>
       </div>
     </Card>
-  )
+  );
 }

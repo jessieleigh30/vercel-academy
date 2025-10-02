@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import { NewsletterSignup } from './newsletter-signup'
+import Link from 'next/link';
+import { NewsletterSignup } from './newsletter-signup';
 
 const navigation = {
   main: [
@@ -14,7 +14,7 @@ const navigation = {
     { name: 'Cloud Solutions', href: '#' },
     { name: 'Consulting', href: '#' },
   ],
-}
+};
 
 export function Footer() {
   return (
@@ -25,7 +25,10 @@ export function Footer() {
           {/* Company Info - Takes more space */}
           <div className="lg:col-span-5 space-y-10">
             <div>
-              <h2 className="text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-none mb-6" style={{ fontFamily: 'var(--font-display)' }}>
+              <h2
+                className="text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-none mb-6"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
                 ACME
               </h2>
               <p className="text-lg text-gray-300 leading-relaxed max-w-md" style={{ fontFamily: 'var(--font-body)' }}>
@@ -35,7 +38,10 @@ export function Footer() {
 
             {/* Newsletter Integration */}
             <div>
-              <h3 className="text-xl font-black uppercase tracking-tighter text-white mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+              <h3
+                className="text-xl font-black uppercase tracking-tighter text-white mb-4"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
                 Stay Updated
               </h3>
               <NewsletterSignup variant="dark" />
@@ -46,13 +52,20 @@ export function Footer() {
           <div className="lg:col-span-7 grid md:grid-cols-2 gap-12 lg:gap-16">
             {/* Navigation */}
             <div>
-              <h3 className="text-xl font-black uppercase tracking-tighter text-white mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+              <h3
+                className="text-xl font-black uppercase tracking-tighter text-white mb-4"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
                 Navigation
               </h3>
               <ul className="space-y-2">
                 {navigation.main.map((item) => (
                   <li key={item.name}>
-                    <Link href={item.href} className="text-gray-300 hover:text-white transition-colors duration-200 text-base" style={{ fontFamily: 'var(--font-body)' }}>
+                    <Link
+                      href={item.href}
+                      className="text-gray-300 hover:text-white transition-colors duration-200 text-base"
+                      style={{ fontFamily: 'var(--font-body)' }}
+                    >
                       {item.name}
                     </Link>
                   </li>
@@ -62,13 +75,20 @@ export function Footer() {
 
             {/* Services */}
             <div>
-              <h3 className="text-xl font-black uppercase tracking-tighter text-white mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+              <h3
+                className="text-xl font-black uppercase tracking-tighter text-white mb-4"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
                 Services
               </h3>
               <ul className="space-y-2">
                 {navigation.services.map((item) => (
                   <li key={item.name}>
-                    <Link href={item.href} className="text-gray-300 hover:text-white transition-colors duration-200 text-base" style={{ fontFamily: 'var(--font-body)' }}>
+                    <Link
+                      href={item.href}
+                      className="text-gray-300 hover:text-white transition-colors duration-200 text-base"
+                      style={{ fontFamily: 'var(--font-body)' }}
+                    >
                       {item.name}
                     </Link>
                   </li>
@@ -95,5 +115,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

@@ -1,19 +1,13 @@
-'use client'
+'use client';
 
-import { useEffect } from 'react'
-import Link from 'next/link'
+import { useEffect } from 'react';
+import Link from 'next/link';
 
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string }
-  reset: () => void
-}) {
+export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
     // Log the error to an error reporting service
-    console.error('Blog post error:', error)
-  }, [error])
+    console.error('Blog post error:', error);
+  }, [error]);
 
   return (
     <main className="min-h-screen bg-white flex items-center justify-center px-6 lg:px-8">
@@ -32,23 +26,14 @@ export default function Error({
           Failed to Load Post
         </h1>
 
-        <p
-          className="text-lg sm:text-xl text-gray-600 mb-4 leading-relaxed"
-          style={{ fontFamily: 'var(--font-body)' }}
-        >
+        <p className="text-lg sm:text-xl text-gray-600 mb-4 leading-relaxed" style={{ fontFamily: 'var(--font-body)' }}>
           We couldn't load this blog post. This might be a temporary issue.
         </p>
 
         {process.env.NODE_ENV === 'development' && error.message && (
           <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-lg text-left">
-            <p className="text-sm font-mono text-red-900 break-all">
-              {error.message}
-            </p>
-            {error.digest && (
-              <p className="text-xs text-red-700 mt-2">
-                Error ID: {error.digest}
-              </p>
-            )}
+            <p className="text-sm font-mono text-red-900 break-all">{error.message}</p>
+            {error.digest && <p className="text-xs text-red-700 mt-2">Error ID: {error.digest}</p>}
           </div>
         )}
 
@@ -71,5 +56,5 @@ export default function Error({
         </div>
       </div>
     </main>
-  )
+  );
 }

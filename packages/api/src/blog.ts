@@ -105,9 +105,7 @@ export async function fetchPosts(limit = 10, offset = 0): Promise<BlogPost[]> {
   await new Promise((resolve) => setTimeout(resolve, 300));
 
   const allPosts = getAllPosts();
-  const sortedPosts = allPosts.sort(
-    (a, b) => b.publishedAt.getTime() - a.publishedAt.getTime()
-  );
+  const sortedPosts = allPosts.sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime());
 
   return sortedPosts.slice(offset, offset + limit);
 }
@@ -119,11 +117,7 @@ export async function fetchPosts(limit = 10, offset = 0): Promise<BlogPost[]> {
  * @param offset - Number of posts to skip (default: 0)
  * @returns Array of blog posts in the specified category
  */
-export async function fetchPostsByCategory(
-  category: string,
-  limit = 10,
-  offset = 0
-): Promise<BlogPost[]> {
+export async function fetchPostsByCategory(category: string, limit = 10, offset = 0): Promise<BlogPost[]> {
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 300));
 
@@ -135,9 +129,9 @@ export async function fetchPostsByCategory(
 
   // If no posts found in category, generate some
   if (categoryPosts.length === 0) {
-    return Array.from({ length: limit }, () =>
-      generateBlogPost({ category })
-    ).sort((a, b) => b.publishedAt.getTime() - a.publishedAt.getTime());
+    return Array.from({ length: limit }, () => generateBlogPost({ category })).sort(
+      (a, b) => b.publishedAt.getTime() - a.publishedAt.getTime()
+    );
   }
 
   return categoryPosts;
@@ -169,10 +163,7 @@ export async function fetchPostBySlug(slug: string): Promise<BlogPost | null> {
  * @param limit - Number of recommendations to return (default: 5)
  * @returns Array of recommended blog posts
  */
-export async function fetchRecommendedPostsBySlug(
-  slug: string,
-  limit = 5
-): Promise<BlogPost[]> {
+export async function fetchRecommendedPostsBySlug(slug: string, limit = 5): Promise<BlogPost[]> {
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 300));
 
@@ -197,19 +188,15 @@ export async function fetchRecommendedPostsBySlug(
       }
 
       // Check if has common tags
-      const commonTags = post.tags.filter((tag) =>
-        currentPost.tags.includes(tag)
-      );
+      const commonTags = post.tags.filter((tag) => currentPost.tags.includes(tag));
       return commonTags.length > 0;
     })
     .sort((a, b) => {
       // Sort by relevance (same category first, then by common tags)
       const aRelevance =
-        (a.category === currentPost.category ? 10 : 0) +
-        a.tags.filter((tag) => currentPost.tags.includes(tag)).length;
+        (a.category === currentPost.category ? 10 : 0) + a.tags.filter((tag) => currentPost.tags.includes(tag)).length;
       const bRelevance =
-        (b.category === currentPost.category ? 10 : 0) +
-        b.tags.filter((tag) => currentPost.tags.includes(tag)).length;
+        (b.category === currentPost.category ? 10 : 0) + b.tags.filter((tag) => currentPost.tags.includes(tag)).length;
 
       return bRelevance - aRelevance;
     })
@@ -218,14 +205,10 @@ export async function fetchRecommendedPostsBySlug(
   // If not enough recommendations, add random posts
   if (recommendedPosts.length < limit) {
     const additionalPosts = allPosts.filter(
-      (post) =>
-        post.slug !== slug &&
-        !recommendedPosts.some((r) => r.slug === post.slug)
+      (post) => post.slug !== slug && !recommendedPosts.some((r) => r.slug === post.slug)
     );
 
-    const randomPosts = faker.helpers
-      .shuffle(additionalPosts)
-      .slice(0, limit - recommendedPosts.length);
+    const randomPosts = faker.helpers.shuffle(additionalPosts).slice(0, limit - recommendedPosts.length);
 
     return [...recommendedPosts, ...randomPosts];
   }
@@ -250,11 +233,7 @@ export async function fetchCategories(): Promise<string[]> {
  * @param offset - Number of results to skip (default: 0)
  * @returns Array of matching blog posts
  */
-export async function searchPosts(
-  query: string,
-  limit = 10,
-  offset = 0
-): Promise<BlogPost[]> {
+export async function searchPosts(query: string, limit = 10, offset = 0): Promise<BlogPost[]> {
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 400));
 
@@ -307,9 +286,7 @@ export async function getTotalPostCountByCategory(category: string): Promise<num
   await new Promise((resolve) => setTimeout(resolve, 100));
 
   const allPosts = getAllPosts();
-  return allPosts.filter(
-    (post) => post.category.toLowerCase() === category.toLowerCase()
-  ).length;
+  return allPosts.filter((post) => post.category.toLowerCase() === category.toLowerCase()).length;
 }
 
 /**

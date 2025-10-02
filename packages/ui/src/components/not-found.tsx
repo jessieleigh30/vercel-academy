@@ -1,19 +1,15 @@
-'use client'
+'use client';
 
-import Link from 'next/link'
+import Link from 'next/link';
 
 interface NotFoundProps {
-  variant?: 'blog' | 'web'
-  homeHref?: string
-  homeLabel?: string
+  variant?: 'blog' | 'web';
+  homeHref?: string;
+  homeLabel?: string;
 }
 
-export function NotFound({
-  variant = 'web',
-  homeHref = '/',
-  homeLabel = 'Back to Home'
-}: NotFoundProps) {
-  const isBlog = variant === 'blog'
+export function NotFound({ variant = 'web', homeHref = '/', homeLabel = 'Back to Home' }: NotFoundProps) {
+  const isBlog = variant === 'blog';
 
   if (isBlog) {
     return (
@@ -42,7 +38,8 @@ export function NotFound({
             className="text-lg sm:text-xl text-gray-600 mb-12 leading-relaxed"
             style={{ fontFamily: 'var(--font-body)' }}
           >
-            Sorry, we couldn't find the page you're looking for. The page may have been moved, deleted, or the URL might be incorrect.
+            Sorry, we couldn't find the page you're looking for. The page may have been moved, deleted, or the URL might
+            be incorrect.
           </p>
 
           {/* Action Buttons */}
@@ -64,7 +61,7 @@ export function NotFound({
           </div>
         </div>
       </main>
-    )
+    );
   }
 
   // Web variant
@@ -85,7 +82,8 @@ export function NotFound({
         </h2>
 
         <p className="text-lg sm:text-xl text-muted-foreground mb-12 leading-relaxed">
-          Sorry, we couldn't find the page you're looking for. The page may have been moved, deleted, or the URL might be incorrect.
+          Sorry, we couldn't find the page you're looking for. The page may have been moved, deleted, or the URL might
+          be incorrect.
         </p>
 
         {/* Action Buttons */}
@@ -106,9 +104,7 @@ export function NotFound({
 
         {/* Additional Help */}
         <div className="mt-16 pt-8 border-t border-border/30">
-          <p className="text-sm text-muted-foreground mb-4">
-            Need help? Try these pages:
-          </p>
+          <p className="text-sm text-muted-foreground mb-4">Need help? Try these pages:</p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/"
@@ -132,5 +128,5 @@ export function NotFound({
         </div>
       </div>
     </main>
-  )
+  );
 }

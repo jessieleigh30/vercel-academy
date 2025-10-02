@@ -1,37 +1,36 @@
-import Image from 'next/image'
+import Image from 'next/image';
 
 interface TestimonialProps {
-  id: string
-  content: string
-  rating: number
-  featured: boolean
+  id: string;
+  content: string;
+  rating: number;
+  featured: boolean;
   author: {
-    name: string
-    role: string
-    company: string
-    avatar: string
-  }
+    name: string;
+    role: string;
+    company: string;
+    avatar: string;
+  };
 }
 
 interface TestimonialsProps {
-  testimonials: TestimonialProps[]
-  title?: string
-  subtitle?: string
-  className?: string
+  testimonials: TestimonialProps[];
+  title?: string;
+  subtitle?: string;
+  className?: string;
 }
 
-export function Testimonials({
-  testimonials,
-  title = "What Our Clients Say",
-  className = ""
-}: TestimonialsProps) {
+export function Testimonials({ testimonials, title = 'What Our Clients Say', className = '' }: TestimonialsProps) {
   return (
     <div className={`bg-white py-24 sm:py-32 ${className}`}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           {/* Left Column - Header */}
           <div className="lg:sticky lg:top-24">
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-gray-900 leading-none" style={{ fontFamily: 'var(--font-display)' }}>
+            <h2
+              className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-gray-900 leading-none"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
               {title}
             </h2>
           </div>
@@ -44,7 +43,10 @@ export function Testimonials({
                 <div className="flex items-center mb-6">
                   <div className="flex text-gray-900">
                     {Array.from({ length: 5 }, (_, i) => (
-                      <span key={i} className={`text-xl ${i < Math.floor(testimonial.rating) ? 'text-gray-900' : 'text-gray-300'}`}>
+                      <span
+                        key={i}
+                        className={`text-xl ${i < Math.floor(testimonial.rating) ? 'text-gray-900' : 'text-gray-300'}`}
+                      >
                         ★
                       </span>
                     ))}
@@ -52,7 +54,10 @@ export function Testimonials({
                 </div>
 
                 {/* Quote */}
-                <blockquote className="text-lg text-gray-600 leading-relaxed mb-8" style={{ fontFamily: 'var(--font-body)' }}>
+                <blockquote
+                  className="text-lg text-gray-600 leading-relaxed mb-8"
+                  style={{ fontFamily: 'var(--font-body)' }}
+                >
                   "{testimonial.content}"
                 </blockquote>
 
@@ -66,7 +71,10 @@ export function Testimonials({
                     height={48}
                   />
                   <div className="ml-4">
-                    <div className="text-base font-black uppercase tracking-tight text-gray-900" style={{ fontFamily: 'var(--font-display)' }}>
+                    <div
+                      className="text-base font-black uppercase tracking-tight text-gray-900"
+                      style={{ fontFamily: 'var(--font-display)' }}
+                    >
                       {testimonial.author.name}
                     </div>
                     <div className="text-sm text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>
@@ -80,5 +88,5 @@ export function Testimonials({
         </div>
       </div>
     </div>
-  )
+  );
 }

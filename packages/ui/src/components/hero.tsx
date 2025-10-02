@@ -1,41 +1,41 @@
 interface HeroProps {
-  title: string
-  description: string
+  title: string;
+  description: string;
   primaryButton?: {
-    text: string
-    href: string
-    variant?: 'primary' | 'secondary' | 'outline'
-  }
+    text: string;
+    href: string;
+    variant?: 'primary' | 'secondary' | 'outline';
+  };
   secondaryButton?: {
-    text: string
-    href: string
-    isTextLink?: boolean
-  }
-  backgroundImage?: string
-  layout?: 'centered' | 'split' | 'overlay'
-  className?: string
+    text: string;
+    href: string;
+    isTextLink?: boolean;
+  };
+  backgroundImage?: string;
+  layout?: 'centered' | 'split' | 'overlay';
+  className?: string;
 }
 
-export function Hero({ 
-  title, 
-  description, 
-  primaryButton, 
+export function Hero({
+  title,
+  description,
+  primaryButton,
   secondaryButton,
   backgroundImage,
   layout = 'split',
-  className = '' 
+  className = '',
 }: HeroProps) {
   if (layout === 'overlay' && backgroundImage) {
     return (
       <div className={`relative min-h-screen flex items-center ${className}`}>
         {/* Background Image */}
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center bg-gray-900"
           style={{ backgroundImage: `url(${backgroundImage})` }}
         >
           <div className="absolute inset-0 bg-black/40"></div>
         </div>
-        
+
         {/* Content */}
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-4xl">
@@ -45,7 +45,7 @@ export function Hero({
             <p className="mt-12 text-xl sm:text-2xl font-body leading-relaxed text-gray-100 font-normal max-w-2xl">
               {description}
             </p>
-            
+
             {(primaryButton || secondaryButton) && (
               <div className="mt-12 flex items-center gap-x-6">
                 {primaryButton && (
@@ -56,10 +56,10 @@ export function Hero({
                     {primaryButton.text}
                   </a>
                 )}
-                
+
                 {secondaryButton && (
-                  <a 
-                    href={secondaryButton.href} 
+                  <a
+                    href={secondaryButton.href}
                     className="text-white font-display font-bold uppercase tracking-wide text-sm hover:text-blue-400 transition-colors duration-200 border-b-2 border-white hover:border-blue-400"
                   >
                     {secondaryButton.text}
@@ -70,7 +70,7 @@ export function Hero({
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   if (layout === 'split') {
@@ -81,13 +81,19 @@ export function Hero({
             <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
               {/* Text Content */}
               <div className="lg:order-1">
-                <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase text-gray-900 tracking-tighter leading-none" style={{ fontFamily: 'var(--font-display)' }}>
+                <h1
+                  className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase text-gray-900 tracking-tighter leading-none"
+                  style={{ fontFamily: 'var(--font-display)' }}
+                >
                   {title}
                 </h1>
-                <p className="mt-12 text-xl sm:text-2xl leading-relaxed text-gray-600 font-normal" style={{ fontFamily: 'var(--font-body)' }}>
+                <p
+                  className="mt-12 text-xl sm:text-2xl leading-relaxed text-gray-600 font-normal"
+                  style={{ fontFamily: 'var(--font-body)' }}
+                >
                   {description}
                 </p>
-                
+
                 {(primaryButton || secondaryButton) && (
                   <div className="mt-12 flex items-center gap-x-6">
                     {primaryButton && (
@@ -98,10 +104,10 @@ export function Hero({
                         {primaryButton.text}
                       </a>
                     )}
-                    
+
                     {secondaryButton && (
-                      <a 
-                        href={secondaryButton.href} 
+                      <a
+                        href={secondaryButton.href}
                         className="text-gray-900 font-display font-bold uppercase tracking-wide text-sm hover:text-blue-600 transition-colors duration-200 border-b-2 border-gray-900 hover:border-blue-600"
                       >
                         {secondaryButton.text}
@@ -110,16 +116,12 @@ export function Hero({
                   </div>
                 )}
               </div>
-              
+
               {/* Image/Visual Space */}
               <div className="lg:order-2">
                 {backgroundImage ? (
                   <div className="aspect-square bg-gray-900 rounded-none overflow-hidden">
-                    <img 
-                      src={backgroundImage} 
-                      alt="" 
-                      className="w-full h-full object-cover"
-                    />
+                    <img src={backgroundImage} alt="" className="w-full h-full object-cover" />
                   </div>
                 ) : (
                   <div className="aspect-square bg-gradient-to-br from-blue-600 to-blue-800 rounded-none flex items-center justify-center">
@@ -131,7 +133,7 @@ export function Hero({
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   // Fallback to centered layout
@@ -145,7 +147,7 @@ export function Hero({
           <p className="mt-12 text-xl sm:text-2xl font-body leading-relaxed text-gray-600 font-normal max-w-3xl mx-auto">
             {description}
           </p>
-          
+
           {(primaryButton || secondaryButton) && (
             <div className="mt-12 flex items-center justify-center gap-x-6">
               {primaryButton && (
@@ -156,10 +158,10 @@ export function Hero({
                   {primaryButton.text}
                 </a>
               )}
-              
+
               {secondaryButton && (
-                <a 
-                  href={secondaryButton.href} 
+                <a
+                  href={secondaryButton.href}
                   className="text-gray-900 font-display font-bold uppercase tracking-wide text-sm hover:text-blue-600 transition-colors duration-200 border-b-2 border-gray-900 hover:border-blue-600"
                 >
                   {secondaryButton.text}
@@ -170,5 +172,5 @@ export function Hero({
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,30 +1,30 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { Button } from './button'
+import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Button } from './button';
 
 interface CategoryFilterProps {
-  categories: string[]
+  categories: string[];
 }
 
 export function CategoryFilter({ categories }: CategoryFilterProps) {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const currentCategory = searchParams.get('category') || 'all'
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const currentCategory = searchParams.get('category') || 'all';
 
   const handleCategoryChange = (category: string) => {
-    const params = new URLSearchParams(searchParams.toString())
-    
+    const params = new URLSearchParams(searchParams.toString());
+
     if (category === 'all') {
-      params.delete('category')
+      params.delete('category');
     } else {
-      params.set('category', category)
+      params.set('category', category);
     }
-    
-    const queryString = params.toString()
-    router.push(queryString ? `/?${queryString}` : '/')
-  }
+
+    const queryString = params.toString();
+    router.push(queryString ? `/?${queryString}` : '/');
+  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -49,5 +49,5 @@ export function CategoryFilter({ categories }: CategoryFilterProps) {
         ))}
       </div>
     </div>
-  )
+  );
 }

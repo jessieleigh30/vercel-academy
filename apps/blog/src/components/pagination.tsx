@@ -1,72 +1,72 @@
-import Link from 'next/link'
+import Link from 'next/link';
 
 interface PaginationProps {
-  currentPage: number
-  totalPages: number
-  category?: string
-  searchQuery?: string
+  currentPage: number;
+  totalPages: number;
+  category?: string;
+  searchQuery?: string;
 }
 
 export function Pagination({ currentPage, totalPages, category, searchQuery }: PaginationProps) {
   // Build URL with preserved query params
   const buildUrl = (page: number) => {
-    const params = new URLSearchParams()
-    if (category) params.set('category', category)
-    if (searchQuery) params.set('search', searchQuery)
-    if (page > 1) params.set('page', page.toString())
+    const params = new URLSearchParams();
+    if (category) params.set('category', category);
+    if (searchQuery) params.set('search', searchQuery);
+    if (page > 1) params.set('page', page.toString());
 
-    const queryString = params.toString()
-    return queryString ? `?${queryString}` : '/'
-  }
+    const queryString = params.toString();
+    return queryString ? `?${queryString}` : '/';
+  };
 
   // Generate page numbers to display
   const getPageNumbers = () => {
-    const pages: (number | string)[] = []
-    const maxPagesToShow = 5
+    const pages: (number | string)[] = [];
+    const maxPagesToShow = 5;
 
     if (totalPages <= maxPagesToShow) {
       // Show all pages if total is small
       for (let i = 1; i <= totalPages; i++) {
-        pages.push(i)
+        pages.push(i);
       }
     } else {
       // Always show first page
-      pages.push(1)
+      pages.push(1);
 
       // Calculate range around current page
-      let startPage = Math.max(2, currentPage - 1)
-      let endPage = Math.min(totalPages - 1, currentPage + 1)
+      let startPage = Math.max(2, currentPage - 1);
+      let endPage = Math.min(totalPages - 1, currentPage + 1);
 
       // Adjust range if at beginning or end
       if (currentPage <= 3) {
-        endPage = 4
+        endPage = 4;
       } else if (currentPage >= totalPages - 2) {
-        startPage = totalPages - 3
+        startPage = totalPages - 3;
       }
 
       // Add ellipsis after first page if needed
       if (startPage > 2) {
-        pages.push('...')
+        pages.push('...');
       }
 
       // Add middle pages
       for (let i = startPage; i <= endPage; i++) {
-        pages.push(i)
+        pages.push(i);
       }
 
       // Add ellipsis before last page if needed
       if (endPage < totalPages - 1) {
-        pages.push('...')
+        pages.push('...');
       }
 
       // Always show last page
-      pages.push(totalPages)
+      pages.push(totalPages);
     }
 
-    return pages
-  }
+    return pages;
+  };
 
-  const pageNumbers = getPageNumbers()
+  const pageNumbers = getPageNumbers();
 
   return (
     <nav className="flex items-center justify-center gap-2" aria-label="Pagination">
@@ -145,5 +145,5 @@ export function Pagination({ currentPage, totalPages, category, searchQuery }: P
         </span>
       )}
     </nav>
-  )
+  );
 }

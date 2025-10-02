@@ -1,23 +1,23 @@
-import type { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
-import { notFound } from 'next/navigation'
-import { fetchPostBySlug } from '@repo/api/blog'
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { fetchPostBySlug } from '@repo/api/blog';
 
 interface PostPageProps {
   params: Promise<{
-    slug: string
-  }>
+    slug: string;
+  }>;
 }
 
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
-  const { slug } = await params
-  const post = await fetchPostBySlug(slug)
+  const { slug } = await params;
+  const post = await fetchPostBySlug(slug);
 
   if (!post) {
     return {
-      title: 'Post Not Found | ACME Blog'
-    }
+      title: 'Post Not Found | ACME Blog',
+    };
   }
 
   return {
@@ -34,58 +34,58 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
           url: post.coverImage,
           width: 1200,
           height: 630,
-          alt: post.title
-        }
-      ]
-    }
-  }
+          alt: post.title,
+        },
+      ],
+    },
+  };
 }
 
 export default async function PostPage({ params }: PostPageProps) {
-  const { slug } = await params
-  const post = await fetchPostBySlug(slug)
+  const { slug } = await params;
+  const post = await fetchPostBySlug(slug);
 
   if (!post) {
-    notFound()
+    notFound();
   }
 
   const formatDate = (date: Date) => {
     return new Intl.DateTimeFormat('en-US', {
       month: 'long',
       day: 'numeric',
-      year: 'numeric'
-    }).format(date)
-  }
+      year: 'numeric',
+    }).format(date);
+  };
 
   const formatNumber = (num: number) => {
     if (num >= 1000) {
-      return `${(num / 1000).toFixed(1)}k`
+      return `${(num / 1000).toFixed(1)}k`;
     }
-    return num.toString()
-  }
+    return num.toString();
+  };
 
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Image with Overlay */}
       <div className="relative h-[60vh] min-h-[400px] max-h-[600px] w-full overflow-hidden bg-gray-900">
-        <Image
-          src={post.coverImage}
-          alt={post.title}
-          fill
-          priority
-          className="object-cover opacity-80"
-        />
+        <Image src={post.coverImage} alt={post.title} fill priority className="object-cover opacity-80" />
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent" />
 
         {/* Title Overlay */}
         <div className="absolute inset-0 flex items-end">
           <div className="mx-auto max-w-4xl w-full px-6 lg:px-8 pb-16">
             <div className="mb-6">
-              <span className="inline-flex items-center rounded-full bg-blue-500 px-4 py-2 text-sm font-bold uppercase tracking-wide text-white shadow-lg" style={{ fontFamily: 'var(--font-display)' }}>
+              <span
+                className="inline-flex items-center rounded-full bg-blue-500 px-4 py-2 text-sm font-bold uppercase tracking-wide text-white shadow-lg"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
                 {post.category}
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-none mb-6" style={{ fontFamily: 'var(--font-display)' }}>
+            <h1
+              className="text-4xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-white leading-none mb-6"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
               {post.title}
             </h1>
           </div>
@@ -114,18 +114,14 @@ export default async function PostPage({ params }: PostPageProps) {
             </div>
           </div>
           <div className="hidden sm:flex flex-col items-end gap-2 text-sm text-gray-600">
-            <time dateTime={post.publishedAt.toISOString()}>
-              {formatDate(post.publishedAt)}
-            </time>
+            <time dateTime={post.publishedAt.toISOString()}>{formatDate(post.publishedAt)}</time>
             <span>{post.readingTime} min read</span>
           </div>
         </div>
 
         {/* Mobile Meta */}
         <div className="sm:hidden flex items-center justify-between mb-8 text-sm text-gray-600">
-          <time dateTime={post.publishedAt.toISOString()}>
-            {formatDate(post.publishedAt)}
-          </time>
+          <time dateTime={post.publishedAt.toISOString()}>{formatDate(post.publishedAt)}</time>
           <span>{post.readingTime} min read</span>
         </div>
 
@@ -147,7 +143,10 @@ export default async function PostPage({ params }: PostPageProps) {
 
         {/* Tags */}
         <div className="mb-12 pb-8 border-b border-gray-200">
-          <h3 className="text-sm font-bold uppercase tracking-wider text-gray-500 mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+          <h3
+            className="text-sm font-bold uppercase tracking-wider text-gray-500 mb-4"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
             Tags
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -192,5 +191,5 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
       </article>
     </main>
-  )
+  );
 }

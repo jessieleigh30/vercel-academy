@@ -124,16 +124,7 @@ const DEPARTMENTS = [
   'Legal',
 ];
 
-const GALLERY_CATEGORIES = [
-  'Product',
-  'Team',
-  'Office',
-  'Events',
-  'Projects',
-  'Clients',
-  'Awards',
-  'Community',
-];
+const GALLERY_CATEGORIES = ['Product', 'Team', 'Office', 'Events', 'Projects', 'Clients', 'Awards', 'Community'];
 
 const SERVICE_NAMES = [
   'Web Development',
@@ -181,18 +172,9 @@ const generateTeamMember = (overrides?: Partial<TeamMember>): TeamMember => {
     avatar: faker.image.avatar(),
     bio: faker.lorem.paragraph({ min: 2, max: 4 }),
     email: faker.internet.email(),
-    linkedin: faker.helpers.maybe(
-      () => `https://linkedin.com/in/${faker.internet.userName()}`,
-      { probability: 0.8 }
-    ),
-    twitter: faker.helpers.maybe(
-      () => `https://twitter.com/${faker.internet.userName()}`,
-      { probability: 0.6 }
-    ),
-    github: faker.helpers.maybe(
-      () => `https://github.com/${faker.internet.userName()}`,
-      { probability: 0.7 }
-    ),
+    linkedin: faker.helpers.maybe(() => `https://linkedin.com/in/${faker.internet.userName()}`, { probability: 0.8 }),
+    twitter: faker.helpers.maybe(() => `https://twitter.com/${faker.internet.userName()}`, { probability: 0.6 }),
+    github: faker.helpers.maybe(() => `https://github.com/${faker.internet.userName()}`, { probability: 0.7 }),
     yearsOfExperience: faker.number.int({ min: 1, max: 20 }),
     skills: faker.helpers.arrayElements(SKILLS, { min: 3, max: 8 }),
     ...overrides,
@@ -210,16 +192,7 @@ const generateGalleryItem = (overrides?: Partial<GalleryItem>): GalleryItem => {
     thumbnailUrl: faker.image.urlPicsumPhotos({ width: 400, height: 300 }),
     category: faker.helpers.arrayElement(GALLERY_CATEGORIES),
     tags: faker.helpers.arrayElements(
-      [
-        'innovation',
-        'design',
-        'technology',
-        'creativity',
-        'teamwork',
-        'success',
-        'award',
-        'milestone',
-      ],
+      ['innovation', 'design', 'technology', 'creativity', 'teamwork', 'success', 'award', 'milestone'],
       { min: 2, max: 4 }
     ),
     createdAt: faker.date.recent({ days: 365 }),
@@ -253,32 +226,16 @@ const generateService = (overrides?: Partial<Service>): Service => {
     id: faker.string.uuid(),
     name: faker.helpers.arrayElement(SERVICE_NAMES),
     description: `${faker.company.buzzPhrase()}. ${faker.lorem.paragraph()}`,
-    icon: faker.helpers.arrayElement([
-      '🚀',
-      '💡',
-      '🎯',
-      '📊',
-      '🔧',
-      '🎨',
-      '📱',
-      '☁️',
-      '🔒',
-      '⚡',
-    ]),
+    icon: faker.helpers.arrayElement(['🚀', '💡', '🎯', '📊', '🔧', '🎨', '📱', '☁️', '🔒', '⚡']),
     features: Array.from(
       { length: faker.number.int({ min: 3, max: 6 }) },
-      () =>
-        `${faker.company.catchPhraseDescriptor()} ${faker.company.catchPhraseNoun()}`
+      () => `${faker.company.catchPhraseDescriptor()} ${faker.company.catchPhraseNoun()}`
     ),
     price: hasPrice
       ? {
           amount: faker.number.int({ min: 99, max: 9999 }),
           currency: 'USD',
-          period: faker.helpers.arrayElement([
-            'monthly',
-            'yearly',
-            'one-time',
-          ] as const),
+          period: faker.helpers.arrayElement(['monthly', 'yearly', 'one-time'] as const),
         }
       : undefined,
     popular: faker.datatype.boolean({ probability: 0.25 }),
@@ -292,13 +249,7 @@ const generateFAQ = (order: number, overrides?: Partial<FAQ>): FAQ => {
     id: faker.string.uuid(),
     question: `${faker.lorem.sentence()}?`,
     answer: faker.lorem.paragraph({ min: 2, max: 4 }),
-    category: faker.helpers.arrayElement([
-      'General',
-      'Pricing',
-      'Technical',
-      'Support',
-      'Features',
-    ]),
+    category: faker.helpers.arrayElement(['General', 'Pricing', 'Technical', 'Support', 'Features']),
     order,
     ...overrides,
   };
@@ -333,10 +284,7 @@ let cachedCompanyStats: CompanyStats | null = null;
  * @param department - Optional department filter
  * @returns Array of team members
  */
-export async function fetchTeamMembers(
-  limit = 12,
-  department?: string
-): Promise<TeamMember[]> {
+export async function fetchTeamMembers(limit = 12, department?: string): Promise<TeamMember[]> {
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 300));
 
@@ -347,14 +295,10 @@ export async function fetchTeamMembers(
   let members = cachedTeamMembers;
 
   if (department) {
-    members = members.filter(
-      (member) => member.department.toLowerCase() === department.toLowerCase()
-    );
+    members = members.filter((member) => member.department.toLowerCase() === department.toLowerCase());
   }
 
-  return members
-    .sort((a, b) => b.yearsOfExperience - a.yearsOfExperience)
-    .slice(0, limit);
+  return members.sort((a, b) => b.yearsOfExperience - a.yearsOfExperience).slice(0, limit);
 }
 
 /**
@@ -364,35 +308,25 @@ export async function fetchTeamMembers(
  * @param featuredOnly - Return only featured items
  * @returns Array of gallery items
  */
-export async function fetchGalleryItems(
-  limit = 20,
-  category?: string,
-  featuredOnly = false
-): Promise<GalleryItem[]> {
+export async function fetchGalleryItems(limit = 20, category?: string, featuredOnly = false): Promise<GalleryItem[]> {
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 350));
 
   if (!cachedGalleryItems) {
-    cachedGalleryItems = Array.from({ length: 100 }, () =>
-      generateGalleryItem()
-    );
+    cachedGalleryItems = Array.from({ length: 100 }, () => generateGalleryItem());
   }
 
   let items = cachedGalleryItems;
 
   if (category) {
-    items = items.filter(
-      (item) => item.category.toLowerCase() === category.toLowerCase()
-    );
+    items = items.filter((item) => item.category.toLowerCase() === category.toLowerCase());
   }
 
   if (featuredOnly) {
     items = items.filter((item) => item.featured);
   }
 
-  return items
-    .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
-    .slice(0, limit);
+  return items.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()).slice(0, limit);
 }
 
 /**
@@ -401,17 +335,12 @@ export async function fetchGalleryItems(
  * @param featuredOnly - Return only featured testimonials
  * @returns Array of testimonials
  */
-export async function fetchTestimonials(
-  limit = 10,
-  featuredOnly = false
-): Promise<Testimonial[]> {
+export async function fetchTestimonials(limit = 10, featuredOnly = false): Promise<Testimonial[]> {
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 250));
 
   if (!cachedTestimonials) {
-    cachedTestimonials = Array.from({ length: 30 }, () =>
-      generateTestimonial()
-    );
+    cachedTestimonials = Array.from({ length: 30 }, () => generateTestimonial());
   }
 
   let testimonials = cachedTestimonials;
@@ -521,10 +450,7 @@ export async function fetchCompanyStats(): Promise<CompanyStats> {
  * @param category - Optional category filter
  * @returns Array of FAQs
  */
-export async function fetchFAQs(
-  limit?: number,
-  category?: string
-): Promise<FAQ[]> {
+export async function fetchFAQs(limit?: number, category?: string): Promise<FAQ[]> {
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 200));
 
@@ -535,9 +461,7 @@ export async function fetchFAQs(
   let faqs = cachedFAQs;
 
   if (category) {
-    faqs = faqs.filter(
-      (faq) => faq.category.toLowerCase() === category.toLowerCase()
-    );
+    faqs = faqs.filter((faq) => faq.category.toLowerCase() === category.toLowerCase());
   }
 
   faqs = faqs.sort((a, b) => a.order - b.order);
@@ -551,10 +475,7 @@ export async function fetchFAQs(
  * @param featuredOnly - Return only featured clients
  * @returns Array of clients
  */
-export async function fetchClients(
-  limit = 20,
-  featuredOnly = false
-): Promise<Client[]> {
+export async function fetchClients(limit = 20, featuredOnly = false): Promise<Client[]> {
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 250));
 
@@ -616,9 +537,7 @@ export async function submitContactForm(formData: {
  * @param email - Email address
  * @returns Success response
  */
-export async function subscribeNewsletter(
-  email: string
-): Promise<{ success: boolean; message: string }> {
+export async function subscribeNewsletter(email: string): Promise<{ success: boolean; message: string }> {
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 500));
 

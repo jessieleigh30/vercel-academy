@@ -1,49 +1,53 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { subscribeNewsletter } from '@repo/api/brand'
-import { Button } from './button'
+import { useState } from 'react';
+import { subscribeNewsletter } from '@repo/api/brand';
+import { Button } from './button';
 
 interface NewsletterSignupProps {
-  className?: string
-  variant?: 'default' | 'compact' | 'dark'
+  className?: string;
+  variant?: 'default' | 'compact' | 'dark';
 }
 
 export function NewsletterSignup({ className = '', variant = 'default' }: NewsletterSignupProps) {
-  const [email, setEmail] = useState('')
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [message, setMessage] = useState('')
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    
-    if (!email.trim()) return
-    
-    setStatus('loading')
-    
+    e.preventDefault();
+
+    if (!email.trim()) return;
+
+    setStatus('loading');
+
     try {
-      const result = await subscribeNewsletter(email.trim())
-      setStatus('success')
-      setMessage(result.message)
-      setEmail('')
+      const result = await subscribeNewsletter(email.trim());
+      setStatus('success');
+      setMessage(result.message);
+      setEmail('');
     } catch (error) {
-      setStatus('error')
-      setMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again.')
+      setStatus('error');
+      setMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
     }
-  }
+  };
 
   const resetForm = () => {
-    setStatus('idle')
-    setMessage('')
-  }
+    setStatus('idle');
+    setMessage('');
+  };
 
   if (variant === 'dark') {
     return (
       <div className={`${className}`}>
         {status === 'success' ? (
           <div>
-            <div className="text-green-400 mb-2" style={{ fontFamily: 'var(--font-body)' }}>Success!</div>
-            <p className="text-sm text-gray-300 mb-4" style={{ fontFamily: 'var(--font-body)' }}>{message}</p>
+            <div className="text-green-400 mb-2" style={{ fontFamily: 'var(--font-body)' }}>
+              Success!
+            </div>
+            <p className="text-sm text-gray-300 mb-4" style={{ fontFamily: 'var(--font-body)' }}>
+              {message}
+            </p>
             <button
               onClick={resetForm}
               className="text-sm text-gray-300 hover:text-white transition-colors duration-200"
@@ -74,10 +78,12 @@ export function NewsletterSignup({ className = '', variant = 'default' }: Newsle
           </form>
         )}
         {status === 'error' && (
-          <p className="mt-2 text-sm text-red-400" style={{ fontFamily: 'var(--font-body)' }}>{message}</p>
+          <p className="mt-2 text-sm text-red-400" style={{ fontFamily: 'var(--font-body)' }}>
+            {message}
+          </p>
         )}
       </div>
-    )
+    );
   }
 
   if (variant === 'compact') {
@@ -114,11 +120,9 @@ export function NewsletterSignup({ className = '', variant = 'default' }: Newsle
             </Button>
           </form>
         )}
-        {status === 'error' && (
-          <p className="mt-2 text-sm text-red-400">{message}</p>
-        )}
+        {status === 'error' && <p className="mt-2 text-sm text-red-400">{message}</p>}
       </div>
-    )
+    );
   }
 
   return (
@@ -137,10 +141,7 @@ export function NewsletterSignup({ className = '', variant = 'default' }: Newsle
           <div className="text-green-400 text-2xl mb-4">Success!</div>
           <h4 className="text-xl font-semibold text-white mb-2">Success!</h4>
           <p className="text-gray-300 mb-6">{message}</p>
-          <Button
-            onClick={resetForm}
-            variant="primary"
-          >
+          <Button onClick={resetForm} variant="primary">
             Subscribe Another Email
           </Button>
         </div>
@@ -155,23 +156,16 @@ export function NewsletterSignup({ className = '', variant = 'default' }: Newsle
               className="flex-1 px-6 py-4 bg-gray-800/50 border border-gray-600 rounded-full text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm"
               disabled={status === 'loading'}
             />
-            <Button
-              type="submit"
-              disabled={status === 'loading' || !email.trim()}
-              size="lg"
-              className="px-8 py-4"
-            >
+            <Button type="submit" disabled={status === 'loading' || !email.trim()} size="lg" className="px-8 py-4">
               {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
             </Button>
           </div>
-          {status === 'error' && (
-            <p className="mt-4 text-center text-red-400">{message}</p>
-          )}
+          {status === 'error' && <p className="mt-4 text-center text-red-400">{message}</p>}
           <p className="mt-4 text-center text-sm text-gray-400">
             No spam, unsubscribe at any time. We respect your privacy!
           </p>
         </form>
       )}
     </div>
-  )
+  );
 }

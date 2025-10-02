@@ -1,34 +1,34 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { Button } from './button'
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Button } from './button';
 
 interface SearchBarProps {
-  initialQuery?: string
+  initialQuery?: string;
 }
 
 export function SearchBar({ initialQuery = '' }: SearchBarProps) {
-  const [query, setQuery] = useState(initialQuery)
-  const router = useRouter()
+  const [query, setQuery] = useState(initialQuery);
+  const router = useRouter();
 
   const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
-    
+    e.preventDefault();
+
     if (!query.trim()) {
-      router.push('/')
-      return
+      router.push('/');
+      return;
     }
-    
-    const params = new URLSearchParams()
-    params.set('search', query.trim())
-    router.push(`/?${params.toString()}`)
-  }
+
+    const params = new URLSearchParams();
+    params.set('search', query.trim());
+    router.push(`/?${params.toString()}`);
+  };
 
   const handleClear = () => {
-    setQuery('')
-    router.push('/')
-  }
+    setQuery('');
+    router.push('/');
+  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -51,5 +51,5 @@ export function SearchBar({ initialQuery = '' }: SearchBarProps) {
         )}
       </form>
     </div>
-  )
+  );
 }

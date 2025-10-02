@@ -1,35 +1,38 @@
-import Image from 'next/image'
+import Image from 'next/image';
 
 interface ClientProps {
-  id: string
-  name: string
-  logo: string
-  industry?: string
-  projectType?: string
-  featured?: boolean
+  id: string;
+  name: string;
+  logo: string;
+  industry?: string;
+  projectType?: string;
+  featured?: boolean;
 }
 
 interface ClientShowcaseProps {
-  clients: ClientProps[]
-  title?: string
-  subtitle?: string
-  className?: string
+  clients: ClientProps[];
+  title?: string;
+  subtitle?: string;
+  className?: string;
 }
 
-export function ClientShowcase({ 
-  clients, 
-  title = "Trusted by Amazing Companies",
+export function ClientShowcase({
+  clients,
+  title = 'Trusted by Amazing Companies',
   subtitle = "We're proud to work with industry leaders and innovative startups!",
-  className = "" 
+  className = '',
 }: ClientShowcaseProps) {
   // Split clients into featured and regular
-  const featuredClients = clients.filter(client => client.featured).slice(0, 3)
-  const regularClients = clients.filter(client => !client.featured).slice(0, 9)
-  
+  const featuredClients = clients.filter((client) => client.featured).slice(0, 3);
+  const regularClients = clients.filter((client) => !client.featured).slice(0, 9);
+
   const getClientCard = (client: ClientProps, index: number, isFeatured: boolean) => {
     if (isFeatured) {
       return (
-        <div key={client.id} className="group relative bg-white border border-gray-100 hover:border-blue-200 transition-all duration-500 min-h-[280px] hover:scale-[1.02]">
+        <div
+          key={client.id}
+          className="group relative bg-white border border-gray-100 hover:border-blue-200 transition-all duration-500 min-h-[280px] hover:scale-[1.02]"
+        >
           <div className="p-8 lg:p-12 h-full flex flex-col justify-between">
             {/* Logo */}
             <div className="mb-8">
@@ -41,10 +44,13 @@ export function ClientShowcase({
                 height={64}
               />
             </div>
-            
+
             {/* Company Name - Large Typography */}
             <div className="flex-1 flex flex-col justify-center">
-              <h3 className="text-3xl lg:text-4xl font-black uppercase tracking-tighter text-gray-900 group-hover:text-blue-600 leading-none transition-colors duration-500" style={{ fontFamily: 'var(--font-display)' }}>
+              <h3
+                className="text-3xl lg:text-4xl font-black uppercase tracking-tighter text-gray-900 group-hover:text-blue-600 leading-none transition-colors duration-500"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
                 {client.name}
               </h3>
               {client.industry && (
@@ -53,22 +59,28 @@ export function ClientShowcase({
                 </p>
               )}
             </div>
-            
+
             {/* Project Teaser on Hover */}
             {client.projectType && (
               <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 <div className="h-1 w-16 bg-blue-600 mb-4"></div>
-                <p className="text-sm font-bold uppercase tracking-wide text-blue-600" style={{ fontFamily: 'var(--font-display)' }}>
+                <p
+                  className="text-sm font-bold uppercase tracking-wide text-blue-600"
+                  style={{ fontFamily: 'var(--font-display)' }}
+                >
                   {client.projectType}
                 </p>
               </div>
             )}
           </div>
         </div>
-      )
+      );
     } else {
       return (
-        <div key={client.id} className="group relative bg-gray-50 hover:bg-white border border-gray-100 hover:border-blue-200 transition-all duration-300 min-h-[160px]">
+        <div
+          key={client.id}
+          className="group relative bg-gray-50 hover:bg-white border border-gray-100 hover:border-blue-200 transition-all duration-300 min-h-[160px]"
+        >
           <div className="p-6 h-full flex flex-col justify-center text-center">
             <Image
               className="h-8 w-auto object-contain mx-auto mb-4 filter grayscale group-hover:grayscale-0 transition-all duration-300"
@@ -77,26 +89,35 @@ export function ClientShowcase({
               width={120}
               height={32}
             />
-            <p className="text-lg font-bold uppercase tracking-wide text-gray-700 group-hover:text-gray-900 leading-tight transition-colors duration-300" style={{ fontFamily: 'var(--font-display)' }}>
+            <p
+              className="text-lg font-bold uppercase tracking-wide text-gray-700 group-hover:text-gray-900 leading-tight transition-colors duration-300"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
               {client.name}
             </p>
             {client.industry && (
-              <p className="mt-2 text-xs text-gray-500 uppercase tracking-wider" style={{ fontFamily: 'var(--font-body)' }}>
+              <p
+                className="mt-2 text-xs text-gray-500 uppercase tracking-wider"
+                style={{ fontFamily: 'var(--font-body)' }}
+              >
                 {client.industry}
               </p>
             )}
           </div>
         </div>
-      )
+      );
     }
-  }
+  };
 
   return (
     <div className={`bg-gray-50 py-16 sm:py-24 ${className}`}>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-2xl text-center mb-20">
-          <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tighter text-gray-900 leading-none" style={{ fontFamily: 'var(--font-display)' }}>
+          <h2
+            className="text-4xl sm:text-5xl font-black uppercase tracking-tighter text-gray-900 leading-none"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
             {title}
           </h2>
           <p className="mt-6 text-xl text-gray-600 leading-relaxed" style={{ fontFamily: 'var(--font-body)' }}>
@@ -118,7 +139,10 @@ export function ClientShowcase({
         {regularClients.length > 0 && (
           <div>
             <div className="mb-12 text-center">
-              <h3 className="text-2xl font-black uppercase tracking-tighter text-gray-700" style={{ fontFamily: 'var(--font-display)' }}>
+              <h3
+                className="text-2xl font-black uppercase tracking-tighter text-gray-700"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
                 And Many More
               </h3>
             </div>
@@ -129,5 +153,5 @@ export function ClientShowcase({
         )}
       </div>
     </div>
-  )
+  );
 }

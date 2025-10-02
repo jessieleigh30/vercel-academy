@@ -33,7 +33,8 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: 'ACME Corporation - Building the Future',
-  description: 'We create amazing digital experiences that make people smile! From creative designs to powerful code - we\'ve got you covered.',
+  description:
+    "We create amazing digital experiences that make people smile! From creative designs to powerful code - we've got you covered.",
 };
 
 export default function RootLayout({

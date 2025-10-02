@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from 'next/link';
 
 export function Footer() {
   return (
@@ -8,9 +8,7 @@ export function Footer() {
           {/* Brand */}
           <div className="xl:col-span-1">
             <Link href={process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000'}>
-              <span className="text-2xl font-bold text-gray-900">
-                ACME
-              </span>
+              <span className="text-2xl font-bold text-gray-900">ACME</span>
             </Link>
             <p className="mt-4 text-sm text-gray-600">
               Insights, tutorials, and stories from the ACME team. Building the future, one post at a time.
@@ -23,7 +21,7 @@ export function Footer() {
               <h3 className="text-sm font-semibold text-gray-900">Main Site</h3>
               <ul className="mt-4 space-y-2">
                 <li>
-                  <a 
+                  <a
                     href={process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000'}
                     className="text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
                   >
@@ -31,7 +29,7 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a 
+                  <a
                     href={`${process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000'}/about`}
                     className="text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
                   >
@@ -39,7 +37,7 @@ export function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a 
+                  <a
                     href={`${process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000'}/contact`}
                     className="text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
                   >
@@ -52,15 +50,12 @@ export function Footer() {
               <h3 className="text-sm font-semibold text-gray-900">Blog</h3>
               <ul className="mt-4 space-y-2">
                 <li>
-                  <Link 
-                    href="/"
-                    className="text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
-                  >
+                  <Link href="/" className="text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200">
                     Latest Posts
                   </Link>
                 </li>
                 <li>
-                  <Link 
+                  <Link
                     href="/?category=technology"
                     className="text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
                   >
@@ -68,7 +63,7 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link 
+                  <Link
                     href="/?category=design"
                     className="text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
                   >
@@ -79,7 +74,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-        
+
         <div className="mt-8 pt-8 border-t border-gray-200 text-center">
           <p className="text-sm text-gray-600">
             © {new Date().getFullYear()} ACME Corporation. Made with love and lots of coffee
@@ -87,5 +82,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

@@ -1,23 +1,23 @@
-'use server'
+'use server';
 
-import { redirect } from 'next/navigation'
-import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
 // Define the form data structure for type safety
 interface ContactFormData {
-  name: string
-  email: string
-  subject: string
-  message: string
-  phone?: string
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  phone?: string;
 }
 
 // Define the return type for our server action
 export type ActionResult = {
-  success: boolean
-  message: string
-  errors?: Record<string, string>
-}
+  success: boolean;
+  message: string;
+  errors?: Record<string, string>;
+};
 
 /**
  * Server Action for handling contact form submissions with useActionState
@@ -29,10 +29,7 @@ export type ActionResult = {
  * 4. Performs validation on the server
  * 5. Can redirect, revalidate, or return data
  */
-export async function submitContactForm(
-  prevState: ActionResult,
-  formData: FormData
-): Promise<ActionResult> {
+export async function submitContactForm(prevState: ActionResult, formData: FormData): Promise<ActionResult> {
   // Step 1: Extract data from FormData
   // FormData.get() returns string | File | null, so we need type assertions
   const data: ContactFormData = {
@@ -40,28 +37,28 @@ export async function submitContactForm(
     email: formData.get('email') as string,
     subject: formData.get('subject') as string,
     message: formData.get('message') as string,
-    phone: formData.get('phone') as string || undefined,
-  }
+    phone: (formData.get('phone') as string) || undefined,
+  };
 
   // Step 2: Server-side validation
-  const errors: Record<string, string> = {}
+  const errors: Record<string, string> = {};
 
   if (!data.name || data.name.trim().length === 0) {
-    errors.name = 'Name is required'
+    errors.name = 'Name is required';
   }
 
   if (!data.email || data.email.trim().length === 0) {
-    errors.email = 'Email is required'
+    errors.email = 'Email is required';
   } else if (!data.email.includes('@')) {
-    errors.email = 'Invalid email address'
+    errors.email = 'Invalid email address';
   }
 
   if (!data.subject || data.subject.trim().length === 0) {
-    errors.subject = 'Subject is required'
+    errors.subject = 'Subject is required';
   }
 
   if (!data.message || data.message.trim().length < 10) {
-    errors.message = 'Message must be at least 10 characters'
+    errors.message = 'Message must be at least 10 characters';
   }
 
   // Return validation errors if any
@@ -69,34 +66,33 @@ export async function submitContactForm(
     return {
       success: false,
       message: 'Please fix the errors below',
-      errors
-    }
+      errors,
+    };
   }
 
   try {
     // Step 3: Simulate processing (in real app, this would be database save, email send, etc.)
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // Step 4: Simulate the existing API call logic
     // In a real implementation, you'd save to database, send email, etc.
-    console.log('Contact form submitted:', data)
+    console.log('Contact form submitted:', data);
 
     // Step 5: Optionally revalidate the page to show updated state
-    revalidatePath('/contact')
+    revalidatePath('/contact');
 
     // Step 6: Return success response
     return {
       success: true,
-      message: 'Thank you for your message. We will get back to you soon!'
-    }
-
+      message: 'Thank you for your message. We will get back to you soon!',
+    };
   } catch (error) {
     // Step 7: Handle server errors
-    console.error('Contact form submission error:', error)
-    
+    console.error('Contact form submission error:', error);
+
     return {
       success: false,
-      message: 'Something went wrong. Please try again.'
-    }
+      message: 'Something went wrong. Please try again.',
+    };
   }
 }

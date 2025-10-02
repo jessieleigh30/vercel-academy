@@ -113,23 +113,25 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  
+
   /* Custom Typography for Creative Agency */
-  --font-family-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-family-display:
+    var(--font-display), ui-sans-serif, system-ui, sans-serif;
   --font-family-body: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  --font-family-mono: var(--font-mono), ui-monospace, Menlo, Monaco, "Cascadia Code", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-  
+  --font-family-mono:
+    var(--font-mono), ui-monospace, Menlo, Monaco, "Cascadia Code", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+
   /* Custom Font Sizes with Optimized Line Heights */
   --font-size-display-sm: 4rem;
   --font-size-display-md: 5rem;
   --font-size-display-lg: 6.5rem;
   --font-size-display-xl: 8rem;
-  
+
   --line-height-display-sm: 0.9;
   --line-height-display-md: 0.9;
   --line-height-display-lg: 0.85;
   --line-height-display-xl: 0.85;
-  
+
   /* Letter Spacing */
   --letter-spacing-tightest: -0.075em;
   --letter-spacing-tighter: -0.05em;
