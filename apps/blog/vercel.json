@@ -1,0 +1,4 @@
+{
+  "installCommand": "cd ../.. && pnpm install",
+  "buildCommand": "cd apps/blog && pnpm run build"
+}
