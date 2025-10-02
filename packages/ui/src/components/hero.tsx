@@ -77,7 +77,7 @@ export function Hero({
     return (
       <div className={`bg-white ${className}`}>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="py-24 lg:py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-24 lg:py-32">
             <div className="max-w-4xl">
               <h1
                 className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase text-gray-900 tracking-tighter leading-none"
@@ -113,6 +113,13 @@ export function Hero({
                   )}
                 </div>
               )}
+            </div>
+            <div className="hidden lg:block">
+              <img
+                src={backgroundImage || 'https://picsum.photos/800/600'}
+                alt={title}
+                className="w-full h-auto object-cover"
+              />
             </div>
           </div>
         </div>

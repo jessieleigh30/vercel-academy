@@ -31,7 +31,12 @@ export default async function GalleryPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Hero title="Portfolio" description="Explore our work, team, and company journey through images" />
+      <Hero
+        title="Portfolio"
+        description="Explore our work, team, and company journey through images"
+        layout="split"
+        backgroundImage="https://picsum.photos/seed/acme-gallery/800/600"
+      />
 
       {/* Categories */}
       <div className="bg-gray-50 py-12">

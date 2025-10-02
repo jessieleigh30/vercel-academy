@@ -39,6 +39,7 @@ export default async function HomePage() {
         title="ACME"
         description="Building the future, one pixel at a time. We're a creative agency focused on bold design and innovative solutions."
         layout="split"
+        backgroundImage="https://picsum.photos/seed/acme-home/800/600"
         primaryButton={{
           text: 'Get Started',
           href: '/contact',

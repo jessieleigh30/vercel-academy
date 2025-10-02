@@ -30,6 +30,8 @@ export default async function AboutUsPage() {
       <Hero
         title="About ACME"
         description="We're a team of passionate professionals dedicated to building innovative solutions that help businesses grow and succeed in the digital age."
+        layout="split"
+        backgroundImage="https://picsum.photos/seed/acme-about/800/600"
       />
         <TeamSection
             members={teamMembers}

@@ -28,7 +28,12 @@ export default async function Contact() {
 
   return (
     <main className="min-h-screen bg-white">
-      <Hero title="Contact Us" description="Get in touch with our team. We'd love to hear from you." />
+      <Hero
+        title="Contact Us"
+        description="Get in touch with our team. We'd love to hear from you."
+        layout="split"
+        backgroundImage="https://picsum.photos/seed/acme-contact/800/600"
+      />
       <ContactForm />
       <ContactSection contactInfo={contactInfo} />
     </main>
