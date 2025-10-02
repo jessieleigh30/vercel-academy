@@ -8,6 +8,7 @@ import {
   getTotalPostCountByCategory,
   getTotalPostCountBySearch,
 } from '@repo/api/blog';
+import { Hero } from '@repo/ui/components/hero';
 import { BlogPostCard } from '../components/blog-post-card';
 import { CategoryFilter } from '../components/category-filter';
 import { SearchBar } from '../components/search-bar';
@@ -99,6 +100,13 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
   return (
     <main className="min-h-screen bg-white">
+      <Hero
+        title="ACME Blog"
+        description="Insights, tutorials, and stories from our amazing team"
+        layout="split"
+        backgroundImage="https://picsum.photos/seed/acme-blog/800/600"
+      />
+
       <div className="bg-gray-50 py-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center mb-8">
