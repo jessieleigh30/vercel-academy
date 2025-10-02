@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 interface TestimonialProps {
   id: string
   content: string
@@ -56,10 +58,12 @@ export function Testimonials({
 
                 {/* Author */}
                 <div className="flex items-center">
-                  <img
+                  <Image
                     className="h-12 w-12 rounded-full"
                     src={testimonial.author.avatar}
                     alt={testimonial.author.name}
+                    width={48}
+                    height={48}
                   />
                   <div className="ml-4">
                     <div className="text-base font-black uppercase tracking-tight text-gray-900" style={{ fontFamily: 'var(--font-display)' }}>

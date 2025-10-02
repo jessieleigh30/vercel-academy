@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 interface ClientProps {
   id: string
   name: string
@@ -31,10 +33,12 @@ export function ClientShowcase({
           <div className="p-8 lg:p-12 h-full flex flex-col justify-between">
             {/* Logo */}
             <div className="mb-8">
-              <img
+              <Image
                 className="h-16 w-auto object-contain transition-all duration-500 filter grayscale group-hover:grayscale-0"
                 src={client.logo}
                 alt={client.name}
+                width={160}
+                height={64}
               />
             </div>
             
@@ -66,10 +70,12 @@ export function ClientShowcase({
       return (
         <div key={client.id} className="group relative bg-gray-50 hover:bg-white border border-gray-100 hover:border-blue-200 transition-all duration-300 min-h-[160px]">
           <div className="p-6 h-full flex flex-col justify-center text-center">
-            <img
+            <Image
               className="h-8 w-auto object-contain mx-auto mb-4 filter grayscale group-hover:grayscale-0 transition-all duration-300"
               src={client.logo}
               alt={client.name}
+              width={120}
+              height={32}
             />
             <p className="text-lg font-bold uppercase tracking-wide text-gray-700 group-hover:text-gray-900 leading-tight transition-colors duration-300" style={{ fontFamily: 'var(--font-display)' }}>
               {client.name}
