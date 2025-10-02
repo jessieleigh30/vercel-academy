@@ -4,6 +4,22 @@ import { StatsSection } from '../components/stats-section'
 import { Services } from '../components/services'
 import { Testimonials } from '../components/testimonials'
 import { ClientShowcase } from '../components/client-showcase'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'ACME Corporation - Building the Future',
+  description: 'We\'re a creative agency focused on bold design and innovative solutions. Building the future, one pixel at a time.',
+  openGraph: {
+    title: 'ACME Corporation - Building the Future',
+    description: 'We\'re a creative agency focused on bold design and innovative solutions.',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ACME Corporation - Building the Future',
+    description: 'We\'re a creative agency focused on bold design and innovative solutions.',
+  },
+}
 
 export default async function HomePage() {
     const [services, companyStats, testimonials, clients] = await Promise.all([

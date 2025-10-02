@@ -3,6 +3,22 @@ import { fetchTeamMembers, fetchCompanyStats } from '@repo/api/brand'
 import { TeamSection } from '../../components/team-section'
 import { StatsCard, StatsGrid } from '../../components/stats-card'
 import { Hero } from '@repo/ui/components/hero'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'About Us - ACME Corporation',
+  description: 'We\'re a team of passionate professionals dedicated to building innovative solutions that help businesses grow and succeed in the digital age.',
+  openGraph: {
+    title: 'About Us - ACME Corporation',
+    description: 'Meet our team of passionate professionals dedicated to building innovative solutions.',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Us - ACME Corporation',
+    description: 'Meet our team of passionate professionals dedicated to building innovative solutions.',
+  },
+}
 
 export default async function AboutUsPage() {
     const [teamMembers, companyStats] = await Promise.all([

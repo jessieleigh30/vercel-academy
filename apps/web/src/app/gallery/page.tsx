@@ -2,6 +2,22 @@
 import { fetchGalleryItems, fetchGalleryCategories } from '@repo/api/brand'
 import Image from 'next/image'
 import { Hero } from '@repo/ui/components/hero'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Portfolio - ACME Corporation',
+  description: 'Explore our work, team, and company journey through images. View our portfolio of creative projects and innovative solutions.',
+  openGraph: {
+    title: 'Portfolio - ACME Corporation',
+    description: 'Explore our work, team, and company journey through images.',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Portfolio - ACME Corporation',
+    description: 'Explore our work, team, and company journey through images.',
+  },
+}
 
 export default async function GalleryPage() {
     const [galleryItems, categories] = await Promise.all([
