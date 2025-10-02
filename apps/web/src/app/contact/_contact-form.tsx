@@ -1,6 +1,7 @@
 'use client';
 
 import { useActionState } from 'react';
+import { track } from '@vercel/analytics';
 import { submitContactForm } from './actions';
 
 // Component for the submit button
@@ -25,10 +26,25 @@ export function ContactForm() {
   // - state: the return value from our server action
   // - formAction: the function to use as the form action
   // - isPending: boolean indicating if the action is currently running
-  const [state, formAction, isPending] = useActionState(submitContactForm, {
-    success: false,
-    message: '',
-  });
+  const [state, formAction, isPending] = useActionState(
+    async (prevState: any, formData: FormData) => {
+      const result = await submitContactForm(prevState, formData);
+
+      // Track successful form submissions
+      if (result.success) {
+        track('Contact Form Submitted', {
+          name: formData.get('name') as string,
+          subject: formData.get('subject') as string,
+        });
+      }
+
+      return result;
+    },
+    {
+      success: false,
+      message: '',
+    }
+  );
 
   return (
     <div className="bg-white py-16 sm:py-24">
