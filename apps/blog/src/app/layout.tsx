@@ -10,12 +10,19 @@ const prata = Prata({
   subsets: ['latin'],
   variable: '--font-display',
   display: 'swap',
+  fallback: ['Georgia', 'serif'],
+  adjustFontFallback: true,
+  preload: true,
 });
 
 const inter = Inter({
+  weight: ['400', '500', '600', '700'],
   subsets: ['latin'],
   variable: '--font-body',
   display: 'swap',
+  fallback: ['system-ui', '-apple-system', 'sans-serif'],
+  adjustFontFallback: true,
+  preload: true,
 });
 
 export const metadata: Metadata = {
