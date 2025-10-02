@@ -8,7 +8,7 @@ import {
   getTotalPostCountByCategory,
   getTotalPostCountBySearch,
 } from '@repo/api/blog';
-import { Hero } from '@repo/ui/components/hero';
+import { FeaturedArticle } from '../components/featured-article';
 import { BlogPostCard } from '../components/blog-post-card';
 import { CategoryFilter } from '../components/category-filter';
 import { SearchBar } from '../components/search-bar';
@@ -73,13 +73,23 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   const currentPage = Math.max(1, parseInt(page || '1', 10));
   const offset = (currentPage - 1) * POSTS_PER_PAGE;
 
+  // Determine if we should show the featured article (only on homepage without filters)
+  const showFeatured = !searchQuery && !category && currentPage === 1;
+
+  // Fetch featured post separately if needed
+  const featuredPostPromise = showFeatured ? fetchPosts(1, 0) : Promise.resolve([]);
+
+  // Adjust offset for main posts if showing featured (skip first post)
+  const mainPostsOffset = showFeatured ? offset + 1 : offset;
+
   // Fetch posts and total count in parallel
-  const [posts, categories, totalCount] = await Promise.all([
+  const [featuredPosts, posts, categories, totalCount] = await Promise.all([
+    featuredPostPromise,
     searchQuery
-      ? searchPosts(searchQuery, POSTS_PER_PAGE, offset)
+      ? searchPosts(searchQuery, POSTS_PER_PAGE, mainPostsOffset)
       : category
-        ? fetchPostsByCategory(category, POSTS_PER_PAGE, offset)
-        : fetchPosts(POSTS_PER_PAGE, offset),
+        ? fetchPostsByCategory(category, POSTS_PER_PAGE, mainPostsOffset)
+        : fetchPosts(POSTS_PER_PAGE, mainPostsOffset),
     fetchCategories(),
     searchQuery
       ? getTotalPostCountBySearch(searchQuery)
@@ -87,6 +97,8 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         ? getTotalPostCountByCategory(category)
         : getTotalPostCount(),
   ]);
+
+  const featuredPost = featuredPosts[0] || null;
 
   const totalPages = Math.ceil(totalCount / POSTS_PER_PAGE);
   const startIndex = offset + 1;
@@ -100,12 +112,8 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
   return (
     <main className="min-h-screen bg-white">
-      <Hero
-        title="ACME Blog"
-        description="Insights, tutorials, and stories from our amazing team"
-        layout="split"
-        backgroundImage="https://picsum.photos/seed/acme-blog/800/600"
-      />
+      {/* Featured Article - Only show on homepage without filters */}
+      {featuredPost && <FeaturedArticle post={featuredPost} />}
 
       <div className="bg-gray-50 py-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
