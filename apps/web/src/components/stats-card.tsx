@@ -22,7 +22,7 @@ export function StatsCard({ value, label, icon, description, trend, className = 
   useEffect(() => {
     const observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) {
+          if (entry?.isIntersecting) {
             setIsVisible(true)
             // Once visible, stop observing
             observer.disconnect()
