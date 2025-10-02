@@ -4,6 +4,9 @@ import { fetchContactInfo } from '@repo/api/brand';
 import { Hero } from '@repo/ui/components/hero';
 import type { Metadata } from 'next';
 
+// Enable ISR with 60 second revalidation
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: 'Contact Us - ACME Corporation',
   description:

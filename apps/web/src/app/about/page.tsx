@@ -4,6 +4,8 @@ import {StatsSection} from '../../components/stats-section'
 import { Hero } from '@repo/ui/components/hero';
 import type { Metadata } from 'next';
 
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: 'About Us - ACME Corporation',
   description:
@@ -36,7 +38,6 @@ export default async function AboutUsPage() {
             className="bg-gray-50 py-16 sm:py-24"
         />
       <StatsSection stats={companyStats} />
-
     </div>
   );
 }
