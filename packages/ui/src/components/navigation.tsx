@@ -132,9 +132,13 @@ export function Navigation({
                   })}
                 </div>
                 <div className="py-6">
-                  <Button href={ctaButton.href} onClick={() => setMobileMenuOpen(false)} className="-mx-3 block w-full">
+                  <Link
+                    href={ctaButton.href}
+                    className="-mx-3 block w-full px-3 py-2 text-center text-base font-semibold leading-7 text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-200"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
                     {ctaButton.text}
-                  </Button>
+                  </Link>
                 </div>
               </div>
             </div>
