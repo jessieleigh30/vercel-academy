@@ -1,4 +1,4 @@
 {
-  "installCommand": "pnpm install --filter=blog --filter=blog...",
-  "buildCommand": "pnpm run build"
+  "installCommand": "cd ../.. && pnpm install --filter=blog...",
+  "buildCommand": "cd ../.. && pnpm --filter=blog run build"
 }
