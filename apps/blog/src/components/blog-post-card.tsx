@@ -35,7 +35,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
           className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
         <div className="absolute top-4 left-4">
-          <span className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700 border border-blue-200">
+          <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-900 border border-gray-300">
             {post.category}
           </span>
         </div>
@@ -59,7 +59,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors duration-200">
+        <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 group-hover:text-gray-700 transition-colors duration-200">
           <Link href={`/${post.slug}`}>{post.title}</Link>
         </h3>
 
@@ -71,7 +71,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
           {post.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 border border-blue-200"
+              className="inline-flex items-center rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-900 border border-gray-300"
             >
               #{tag}
             </span>

@@ -51,7 +51,7 @@ export function Hero({
                 {primaryButton && (
                   <a
                     href={primaryButton.href}
-                    className="bg-blue-600 text-white font-display font-bold px-10 py-5 rounded-none uppercase tracking-wide text-sm hover:bg-blue-700 transition-colors duration-200"
+                    className="bg-gray-900 text-white font-display font-bold px-10 py-5 rounded-none uppercase tracking-wide text-sm hover:bg-gray-700 transition-colors duration-200"
                   >
                     {primaryButton.text}
                   </a>
@@ -60,7 +60,7 @@ export function Hero({
                 {secondaryButton && (
                   <a
                     href={secondaryButton.href}
-                    className="text-white font-display font-bold uppercase tracking-wide text-sm hover:text-blue-400 transition-colors duration-200 border-b-2 border-white hover:border-blue-400"
+                    className="text-white font-display font-bold uppercase tracking-wide text-sm hover:text-gray-300 transition-colors duration-200 border-b-2 border-white hover:border-gray-300"
                   >
                     {secondaryButton.text}
                   </a>
@@ -97,7 +97,7 @@ export function Hero({
                   {primaryButton && (
                     <a
                       href={primaryButton.href}
-                      className="bg-blue-600 text-white font-display font-bold px-10 py-5 rounded-none uppercase tracking-wide text-sm hover:bg-blue-700 transition-colors duration-200"
+                      className="bg-gray-900 text-white font-display font-bold px-10 py-5 rounded-none uppercase tracking-wide text-sm hover:bg-gray-700 transition-colors duration-200"
                     >
                       {primaryButton.text}
                     </a>
@@ -106,7 +106,7 @@ export function Hero({
                   {secondaryButton && (
                     <a
                       href={secondaryButton.href}
-                      className="text-gray-900 font-display font-bold uppercase tracking-wide text-sm hover:text-blue-600 transition-colors duration-200 border-b-2 border-gray-900 hover:border-blue-600"
+                      className="text-gray-900 font-display font-bold uppercase tracking-wide text-sm hover:text-gray-700 transition-colors duration-200 border-b-2 border-gray-900 hover:border-gray-700"
                     >
                       {secondaryButton.text}
                     </a>
@@ -137,7 +137,7 @@ export function Hero({
               {primaryButton && (
                 <a
                   href={primaryButton.href}
-                  className="bg-blue-600 text-white font-display font-bold px-10 py-5 rounded-none uppercase tracking-wide text-sm hover:bg-blue-700 transition-colors duration-200"
+                  className="bg-gray-900 text-white font-display font-bold px-10 py-5 rounded-none uppercase tracking-wide text-sm hover:bg-gray-700 transition-colors duration-200"
                 >
                   {primaryButton.text}
                 </a>
@@ -146,7 +146,7 @@ export function Hero({
               {secondaryButton && (
                 <a
                   href={secondaryButton.href}
-                  className="text-gray-900 font-display font-bold uppercase tracking-wide text-sm hover:text-blue-600 transition-colors duration-200 border-b-2 border-gray-900 hover:border-blue-600"
+                  className="text-gray-900 font-display font-bold uppercase tracking-wide text-sm hover:text-gray-700 transition-colors duration-200 border-b-2 border-gray-900 hover:border-gray-700"
                 >
                   {secondaryButton.text}
                 </a>

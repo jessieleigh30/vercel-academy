@@ -31,7 +31,7 @@ export function ClientShowcase({
       return (
         <div
           key={client.id}
-          className="group relative bg-white border border-gray-100 hover:border-blue-200 transition-all duration-500 min-h-[280px] hover:scale-[1.02]"
+          className="group relative bg-white border border-gray-100 hover:border-gray-300 transition-all duration-500 min-h-[280px] hover:scale-[1.02]"
         >
           <div className="p-8 lg:p-12 h-full flex flex-col justify-between">
             {/* Logo */}
@@ -48,7 +48,7 @@ export function ClientShowcase({
             {/* Company Name - Large Typography */}
             <div className="flex-1 flex flex-col justify-center">
               <h3
-                className="text-3xl lg:text-4xl font-black uppercase tracking-tighter text-gray-900 group-hover:text-blue-600 leading-none transition-colors duration-500"
+                className="text-3xl lg:text-4xl font-black uppercase tracking-tighter text-gray-900 group-hover:text-gray-900 leading-none transition-colors duration-500"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
                 {client.name}
@@ -63,7 +63,7 @@ export function ClientShowcase({
             {/* Project Teaser on Hover */}
             {client.projectType && (
               <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <div className="h-1 w-16 bg-blue-600 mb-4"></div>
+                <div className="h-1 w-16 bg-gray-900 mb-4"></div>
                 <p
                   className="text-sm font-bold uppercase tracking-wide text-blue-600"
                   style={{ fontFamily: 'var(--font-display)' }}
@@ -79,7 +79,7 @@ export function ClientShowcase({
       return (
         <div
           key={client.id}
-          className="group relative bg-gray-50 hover:bg-white border border-gray-100 hover:border-blue-200 transition-all duration-300 min-h-[160px]"
+          className="group relative bg-gray-50 hover:bg-white border border-gray-100 hover:border-gray-300 transition-all duration-300 min-h-[160px]"
         >
           <div className="p-6 h-full flex flex-col justify-center text-center">
             <Image
@@ -123,7 +123,7 @@ export function ClientShowcase({
           <p className="mt-6 text-xl text-gray-600 leading-relaxed" style={{ fontFamily: 'var(--font-body)' }}>
             {subtitle}
           </p>
-          <div className="mt-8 h-1 w-24 bg-blue-600 mx-auto"></div>
+          <div className="mt-8 h-1 w-24 bg-gray-900 mx-auto"></div>
         </div>
 
         {/* Featured Clients - Large Layout */}

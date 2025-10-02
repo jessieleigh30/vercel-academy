@@ -41,7 +41,7 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
         <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
           <button
             onClick={reset}
-            className="inline-flex items-center justify-center px-8 py-4 text-base font-bold uppercase tracking-wide text-white bg-blue-600 rounded-none hover:bg-blue-700 transition-colors duration-200 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center justify-center px-8 py-4 text-base font-bold uppercase tracking-wide text-white bg-gray-900 rounded-none hover:bg-gray-700 transition-colors duration-200 shadow-lg hover:shadow-xl"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             Try Again

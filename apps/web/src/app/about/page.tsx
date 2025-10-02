@@ -29,13 +29,14 @@ export default async function AboutUsPage() {
         title="About ACME"
         description="We're a team of passionate professionals dedicated to building innovative solutions that help businesses grow and succeed in the digital age."
       />
+        <TeamSection
+            members={teamMembers}
+            title="Meet Our Team"
+            description="The talented individuals driving our success"
+            className="bg-gray-50 py-16 sm:py-24"
+        />
       <StatsSection stats={companyStats} />
-      <TeamSection
-        members={teamMembers}
-        title="Meet Our Team"
-        description="The talented individuals driving our success"
-        className="bg-gray-50 py-16 sm:py-24"
-      />
+
     </div>
   );
 }

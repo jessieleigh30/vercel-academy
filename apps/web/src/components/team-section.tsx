@@ -51,7 +51,7 @@ export function TeamSection({
   const getCardClass = (index: number) => {
     const isVisible = visibleCards.has(index)
     const baseClass = "group relative overflow-hidden transition-all duration-700 min-h-[420px] bg-white"
-    const hoverClass = "hover:bg-[#CCFF00] hover:shadow-xl"
+    const hoverClass = "hover:bg-gray-900 hover:shadow-xl"
     const animationClass = isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"
     const delayClass = "transition-all duration-700 ease-out"
 
@@ -112,19 +112,19 @@ export function TeamSection({
                       {/* Member Info */}
                       <div className="flex-1">
                         <h3
-                          className="text-2xl font-black uppercase tracking-tighter mb-2 text-gray-900 group-hover:text-black transition-colors duration-500"
+                          className="text-2xl font-black uppercase tracking-tighter mb-2 text-gray-900 group-hover:text-white transition-colors duration-500"
                           style={{ fontFamily: 'var(--font-display)' }}
                         >
                           {member.name}
                         </h3>
                         <p
-                          className="text-base font-medium mb-1 text-gray-600 group-hover:text-black transition-colors duration-500"
+                          className="text-base font-medium mb-1 text-gray-600 group-hover:text-white transition-colors duration-500"
                           style={{ fontFamily: 'var(--font-body)' }}
                         >
                           {member.role}
                         </p>
                         <p
-                          className="text-sm font-normal mb-6 text-gray-500 group-hover:text-gray-700 transition-colors duration-500"
+                          className="text-sm font-normal mb-6 text-gray-500 group-hover:text-gray-300 transition-colors duration-500"
                           style={{ fontFamily: 'var(--font-body)' }}
                         >
                           {member.department}
@@ -132,7 +132,7 @@ export function TeamSection({
 
                         {/* Experience */}
                         <div
-                          className="text-sm font-medium mb-6 text-gray-600 group-hover:text-black transition-colors duration-500"
+                          className="text-sm font-medium mb-6 text-gray-600 group-hover:text-white transition-colors duration-500"
                           style={{ fontFamily: 'var(--font-body)' }}
                         >
                           {member.yearsOfExperience} years experience
@@ -143,7 +143,7 @@ export function TeamSection({
                           {member.skills.slice(0, 3).map((skill) => (
                               <span
                                   key={skill}
-                                  className="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-gray-100 text-gray-700 group-hover:bg-black group-hover:text-[#CCFF00] transition-all duration-500"
+                                  className="text-xs font-bold uppercase tracking-wider px-3 py-1 bg-gray-100 text-gray-700 group-hover:bg-white group-hover:text-gray-900 transition-all duration-500"
                                   style={{ fontFamily: 'var(--font-display)' }}
                               >
                           {skill}
@@ -158,7 +158,7 @@ export function TeamSection({
                             <div className="mb-6">
                               <a
                                   href={`mailto:${member.email}`}
-                                  className="inline-block text-sm font-medium text-gray-900 hover:text-black underline underline-offset-4 transition-colors duration-200"
+                                  className="inline-block text-sm font-medium text-gray-900 group-hover:text-white hover:text-white underline underline-offset-4 transition-colors duration-200"
                                   style={{ fontFamily: 'var(--font-body)' }}
                               >
                                 get in touch
@@ -173,7 +173,7 @@ export function TeamSection({
                                   href={member.linkedin}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-sm font-medium text-gray-600 hover:text-black group-hover:text-black transition-colors duration-500"
+                                  className="text-sm font-medium text-gray-600 hover:text-white group-hover:text-white transition-colors duration-500"
                                   style={{ fontFamily: 'var(--font-body)' }}
                               >
                                 linkedin
@@ -184,7 +184,7 @@ export function TeamSection({
                                   href={member.twitter}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-sm font-medium text-gray-600 hover:text-black group-hover:text-black transition-colors duration-500"
+                                  className="text-sm font-medium text-gray-600 hover:text-white group-hover:text-white transition-colors duration-500"
                                   style={{ fontFamily: 'var(--font-body)' }}
                               >
                                 twitter
@@ -195,7 +195,7 @@ export function TeamSection({
                                   href={member.github}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-sm font-medium text-gray-600 hover:text-black group-hover:text-black transition-colors duration-500"
+                                  className="text-sm font-medium text-gray-600 hover:text-white group-hover:text-white transition-colors duration-500"
                                   style={{ fontFamily: 'var(--font-body)' }}
                               >
                                 github

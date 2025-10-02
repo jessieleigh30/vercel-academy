@@ -76,7 +76,7 @@ export default async function PostPage({ params }: PostPageProps) {
           <div className="mx-auto max-w-4xl w-full px-6 lg:px-8 pb-16">
             <div className="mb-6">
               <span
-                className="inline-flex items-center rounded-full bg-blue-500 px-4 py-2 text-sm font-bold uppercase tracking-wide text-white shadow-lg"
+                className="inline-flex items-center rounded-full bg-gray-1000 px-4 py-2 text-sm font-bold uppercase tracking-wide text-white shadow-lg"
                 style={{ fontFamily: 'var(--font-display)' }}
               >
                 {post.category}
@@ -153,7 +153,7 @@ export default async function PostPage({ params }: PostPageProps) {
             {post.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-flex items-center rounded-md bg-blue-50 px-3 py-2 text-sm font-medium text-blue-700 border border-blue-200 hover:bg-blue-100 transition-colors duration-200"
+                className="inline-flex items-center rounded-md bg-gray-100 px-3 py-2 text-sm font-medium text-gray-900 border border-gray-300 hover:bg-gray-200 transition-colors duration-200"
               >
                 #{tag}
               </span>
@@ -183,7 +183,7 @@ export default async function PostPage({ params }: PostPageProps) {
           </div>
           <Link
             href="/"
-            className="inline-flex items-center justify-center px-6 py-3 text-sm font-bold uppercase tracking-wide text-white bg-blue-600 rounded-none hover:bg-blue-700 transition-colors duration-200 shadow-lg"
+            className="inline-flex items-center justify-center px-6 py-3 text-sm font-bold uppercase tracking-wide text-white bg-gray-900 rounded-none hover:bg-gray-700 transition-colors duration-200 shadow-lg"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             ← Back to Blog

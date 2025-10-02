@@ -74,7 +74,7 @@ export function Pagination({ currentPage, totalPages, category, searchQuery }: P
       {currentPage > 1 ? (
         <Link
           href={buildUrl(currentPage - 1)}
-          className="inline-flex items-center justify-center px-4 py-2 text-sm font-bold uppercase tracking-wide text-gray-700 bg-white border border-gray-300 rounded-none hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200"
+          className="inline-flex items-center justify-center px-4 py-2 text-sm font-bold uppercase tracking-wide text-gray-700 bg-white border border-gray-300 rounded-none hover:bg-gray-50 hover:text-gray-900 transition-colors duration-200"
           style={{ fontFamily: 'var(--font-display)' }}
           aria-label="Previous page"
         >
@@ -99,8 +99,8 @@ export function Pagination({ currentPage, totalPages, category, searchQuery }: P
               href={buildUrl(page)}
               className={`inline-flex items-center justify-center min-w-[40px] h-10 px-3 text-sm font-bold uppercase tracking-wide rounded-none transition-all duration-200 ${
                 page === currentPage
-                  ? 'bg-blue-600 text-white shadow-lg'
-                  : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:text-blue-600'
+                  ? 'bg-gray-900 text-white shadow-lg'
+                  : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:text-gray-900'
               }`}
               style={{ fontFamily: 'var(--font-display)' }}
               aria-label={page === currentPage ? `Current page, page ${page}` : `Go to page ${page}`}
@@ -129,7 +129,7 @@ export function Pagination({ currentPage, totalPages, category, searchQuery }: P
       {currentPage < totalPages ? (
         <Link
           href={buildUrl(currentPage + 1)}
-          className="inline-flex items-center justify-center px-4 py-2 text-sm font-bold uppercase tracking-wide text-gray-700 bg-white border border-gray-300 rounded-none hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200"
+          className="inline-flex items-center justify-center px-4 py-2 text-sm font-bold uppercase tracking-wide text-gray-700 bg-white border border-gray-300 rounded-none hover:bg-gray-50 hover:text-gray-900 transition-colors duration-200"
           style={{ fontFamily: 'var(--font-display)' }}
           aria-label="Next page"
         >

@@ -23,7 +23,7 @@ export function NotFound({ variant = 'web', homeHref = '/', homeLabel = 'Back to
             >
               404
             </h1>
-            <div className="h-2 w-32 bg-blue-600 mx-auto -mt-8"></div>
+            <div className="h-2 w-32 bg-gray-900 mx-auto -mt-8"></div>
           </div>
 
           {/* Error Message */}
@@ -46,7 +46,7 @@ export function NotFound({ variant = 'web', homeHref = '/', homeLabel = 'Back to
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href={homeHref}
-              className="inline-flex items-center justify-center px-8 py-4 text-base font-bold uppercase tracking-wide text-white bg-blue-600 rounded-none hover:bg-blue-700 transition-colors duration-200 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center justify-center px-8 py-4 text-base font-bold uppercase tracking-wide text-white bg-gray-900 rounded-none hover:bg-gray-700 transition-colors duration-200 shadow-lg hover:shadow-xl"
               style={{ fontFamily: 'var(--font-display)' }}
             >
               ← {homeLabel}

@@ -99,7 +99,6 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
   return (
     <main className="min-h-screen bg-white">
-      {/* Search & Filter */}
       <div className="bg-gray-50 py-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center mb-8">
@@ -109,7 +108,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             >
               Find Content
             </h2>
-            <div className="mt-4 h-1 w-16 bg-blue-600 mx-auto"></div>
+            <div className="mt-4 h-1 w-16 bg-gray-900 mx-auto"></div>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <SearchBar initialQuery={searchQuery} />
@@ -133,7 +132,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
                 ? 'No posts found'
                 : `Showing ${startIndex}-${endIndex} of ${totalCount} post${totalCount !== 1 ? 's' : ''}`}
             </p>
-            <div className="mt-8 h-1 w-24 bg-blue-600 mx-auto"></div>
+            <div className="mt-8 h-1 w-24 bg-gray-900 mx-auto"></div>
           </div>
 
           {posts.length === 0 ? (

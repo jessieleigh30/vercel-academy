@@ -99,7 +99,7 @@ export function StatsCard({ value, label, icon, description, trend, className = 
               className="mt-4 text-sm font-medium leading-6 text-gray-600 uppercase tracking-wide flex items-center justify-center gap-2"
               style={{ fontFamily: "var(--font-body)" }}
           >
-            {typeof icon === "string" ? <span className="text-blue-600">{icon}</span> : icon}
+            {typeof icon === "string" ? <span className="text-gray-900">{icon}</span> : icon}
             {label}
           </dt>
 
