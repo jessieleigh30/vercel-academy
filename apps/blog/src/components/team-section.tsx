@@ -21,7 +21,7 @@ export function TeamSection({
   className = '',
 }: TeamSectionProps) {
   const getGridCols = (cols: number) => {
-    const colsMap = {
+    const colsMap: Record<number, string> = {
       2: 'sm:grid-cols-2',
       3: 'sm:grid-cols-2 lg:grid-cols-3',
       4: 'sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-4',
