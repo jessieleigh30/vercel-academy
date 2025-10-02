@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { TeamMember } from '@repo/api/brand';
+import type { TeamMember } from '@repo/api/brand';
 
 export interface TeamSectionProps {
   members: TeamMember[];
@@ -15,8 +15,6 @@ export function TeamSection({
   members,
   title = 'Meet Our Team',
   description = 'The talented individuals driving our success',
-  variant = 'default',
-  columns = 3,
   showContactButton = false,
   className = '',
 }: TeamSectionProps) {
@@ -51,7 +49,6 @@ export function TeamSection({
           <p className="mt-6 text-xl text-gray-600 leading-relaxed" style={{ fontFamily: 'var(--font-body)' }}>
             {description}
           </p>
-          <div className="mt-8 h-1 w-24 bg-blue-600 mx-auto"></div>
         </div>
 
         {/* Team Grid */}
