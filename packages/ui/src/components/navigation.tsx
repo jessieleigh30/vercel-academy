@@ -76,11 +76,6 @@ export function Navigation({
             );
           })}
         </div>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Button href={ctaButton.href} size="sm">
-            {ctaButton.text}
-          </Button>
-        </div>
       </nav>
 
       {/* Mobile menu */}

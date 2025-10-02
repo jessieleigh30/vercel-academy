@@ -15,7 +15,8 @@
         "noForEach": "off"
       },
       "nursery": {
-        "useSortedClasses": "off"
+        "useSortedClasses": "off",
+        "useSortedAttributes": "off"
       }
     }
   },
