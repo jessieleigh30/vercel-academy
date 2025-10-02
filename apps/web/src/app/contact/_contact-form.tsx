@@ -47,27 +47,15 @@ export function ContactForm() {
   );
 
   return (
-    <div className="bg-white py-16 sm:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl">
-          <h2
-            className="text-4xl sm:text-5xl font-black uppercase tracking-tighter text-gray-900 leading-none mb-6"
-            style={{ fontFamily: 'var(--font-display)' }}
-          >
-            Get in Touch
-          </h2>
-          <p className="text-xl text-gray-600" style={{ fontFamily: 'var(--font-body)' }}>
-            Have a question or want to work with us? We'd love to hear from you!
-          </p>
-
-          {/* 
-                    Key Server Actions concepts in this form:
-                    1. action={formAction} - Uses our server action instead of onSubmit
-                    2. No controlled components - React doesn't manage input values
-                    3. name attributes are crucial - they become FormData keys
-                    4. Form resets automatically on successful submission
-                    */}
-          <form action={formAction} className="mt-16">
+    <div>
+      {/*
+        Key Server Actions concepts in this form:
+        1. action={formAction} - Uses our server action instead of onSubmit
+        2. No controlled components - React doesn't manage input values
+        3. name attributes are crucial - they become FormData keys
+        4. Form resets automatically on successful submission
+      */}
+      <form action={formAction}>
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
               <div className="sm:col-span-2">
                 <label
@@ -197,8 +185,6 @@ export function ContactForm() {
               <SubmitButton pending={isPending} />
             </div>
           </form>
-        </div>
-      </div>
     </div>
   );
 }
