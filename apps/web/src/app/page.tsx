@@ -6,7 +6,6 @@ import { Testimonials } from '../components/testimonials';
 import { ClientShowcase } from '../components/client-showcase';
 import type { Metadata } from 'next';
 
-// Enable ISR with 60 second revalidation
 export const revalidate = 86400;
 
 export const metadata: Metadata = {

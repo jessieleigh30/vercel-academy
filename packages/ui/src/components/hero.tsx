@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface HeroProps {
   title: string;
   description: string;
@@ -114,11 +116,14 @@ export function Hero({
                 </div>
               )}
             </div>
-            <div className="hidden lg:block">
-              <img
+            <div className="hidden lg:block relative h-[500px]">
+              <Image
                 src={backgroundImage || 'https://picsum.photos/800/600'}
                 alt={title}
-                className="w-full h-auto object-cover"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 1024px) 0vw, 50vw"
               />
             </div>
           </div>
