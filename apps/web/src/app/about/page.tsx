@@ -4,7 +4,7 @@ import {StatsSection} from '../../components/stats-section'
 import { Hero } from '@repo/ui/components/hero';
 import type { Metadata } from 'next';
 
-export const revalidate = 86400;
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
   title: 'About Us - ACME Corporation',

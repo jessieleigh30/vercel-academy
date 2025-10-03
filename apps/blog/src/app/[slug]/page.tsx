@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { fetchPostBySlug, fetchPosts } from '@repo/api/blog';
 
-export const revalidate = 86400;
+export const revalidate = 3600; // Revalidate every hour
 
 interface PostPageProps {
   params: Promise<{

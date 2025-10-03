@@ -6,7 +6,8 @@ import { Testimonials } from '../components/testimonials';
 import { ClientShowcase } from '../components/client-showcase';
 import type { Metadata } from 'next';
 
-export const revalidate = 86400;
+// Static generation - data is from faker.js and doesn't change between builds
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
   title: 'ACME Corporation - Building the Future',

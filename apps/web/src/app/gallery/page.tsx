@@ -5,8 +5,7 @@ import { CategoryFilter } from '@repo/ui/components/category-filter';
 import { FeaturedCard } from '@repo/ui/components/featured-card';
 import type { Metadata } from 'next';
 
-// Enable ISR with 60 second revalidation
-export const revalidate = 86400;
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Portfolio - ACME Corporation',

@@ -3,8 +3,7 @@ import { ContactForm } from './_contact-form';
 import { fetchContactInfo } from '@repo/api/brand';
 import type { Metadata } from 'next';
 
-// Enable ISR with 60 second revalidation
-export const revalidate = 86400;
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Contact Us - ACME Corporation',
@@ -45,16 +44,13 @@ export default async function Contact() {
         </div>
       </div>
 
-      {/* Two Column Layout */}
       <div className="bg-white py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
-            {/* Left Column - Contact Form */}
             <div className="lg:col-span-2">
               <ContactForm />
             </div>
 
-            {/* Right Column - Contact Info */}
             <div className="lg:col-span-1">
               <ContactSection contactInfo={contactInfo} />
             </div>
