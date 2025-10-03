@@ -54,14 +54,15 @@ export function Navigation({
             </svg>
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
+        <div className="hidden lg:flex lg:gap-x-8">
           {items.map((item) => {
             const isExternal = item.href.startsWith('http');
             return isExternal ? (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-sm font-semibold leading-6 text-gray-700 hover:text-gray-900 transition-colors duration-200"
+                className="text-sm font-bold uppercase tracking-wide text-gray-700 hover:text-gray-900 transition-colors duration-200"
+                style={{ fontFamily: 'var(--font-display)' }}
               >
                 {item.name}
               </a>
@@ -69,23 +70,35 @@ export function Navigation({
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-sm font-semibold leading-6 text-gray-700 hover:text-gray-900 transition-colors duration-200"
+                className="text-sm font-bold uppercase tracking-wide text-gray-700 hover:text-gray-900 transition-colors duration-200"
+                style={{ fontFamily: 'var(--font-display)' }}
               >
                 {item.name}
               </Link>
             );
           })}
         </div>
+        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          <Link
+            href={ctaButton.href}
+            className="text-sm font-bold uppercase tracking-wide text-white bg-gray-900 hover:bg-gray-700 px-6 py-3 transition-colors duration-200"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            {ctaButton.text}
+          </Link>
+        </div>
       </nav>
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden">
-          <div className="fixed inset-0 z-50"></div>
-          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-200">
+          <div className="fixed inset-0 z-40 bg-gray-900/50" onClick={() => setMobileMenuOpen(false)}></div>
+          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-200 shadow-xl">
             <div className="flex items-center justify-between">
-              <Link href={brandHref} className="-m-1.5 p-1.5">
-                <span className="text-xl font-bold text-gray-900">{brandName}</span>
+              <Link href={brandHref} className="-m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
+                <span className="text-2xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-display)' }}>
+                  {brandName}
+                </span>
               </Link>
               <button
                 type="button"
@@ -114,7 +127,8 @@ export function Navigation({
                       <a
                         key={item.name}
                         href={item.href}
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                        className="-mx-3 block px-3 py-3 text-base font-bold uppercase tracking-wide text-gray-900 hover:bg-gray-100 transition-colors duration-200"
+                        style={{ fontFamily: 'var(--font-display)' }}
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         {item.name}
@@ -123,7 +137,8 @@ export function Navigation({
                       <Link
                         key={item.name}
                         href={item.href}
-                        className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                        className="-mx-3 block px-3 py-3 text-base font-bold uppercase tracking-wide text-gray-900 hover:bg-gray-100 transition-colors duration-200"
+                        style={{ fontFamily: 'var(--font-display)' }}
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         {item.name}
@@ -134,7 +149,8 @@ export function Navigation({
                 <div className="py-6">
                   <Link
                     href={ctaButton.href}
-                    className="-mx-3 block w-full px-3 py-2 text-center text-base font-semibold leading-7 text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-200"
+                    className="-mx-3 block w-full px-6 py-4 text-center text-base font-bold uppercase tracking-wide text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-200"
+                    style={{ fontFamily: 'var(--font-display)' }}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {ctaButton.text}
