@@ -10,7 +10,7 @@ import {
 } from '@repo/api/blog';
 import { FeaturedArticle } from '../components/featured-article';
 import { BlogPostCard } from '../components/blog-post-card';
-import { CategoryFilter } from '../components/category-filter';
+import { CategoryFilter } from '@repo/ui/components/category-filter';
 import { SearchBar } from '../components/search-bar';
 import { Button } from '../components/button';
 import { Pagination } from '../components/pagination';
@@ -73,8 +73,8 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   const currentPage = Math.max(1, parseInt(page || '1', 10));
   const offset = (currentPage - 1) * POSTS_PER_PAGE;
 
-  // Determine if we should show the featured article (only on homepage without filters)
-  const showFeatured = !searchQuery && !category && currentPage === 1;
+  // Always show featured article on page 1 (even with category filter, but not search)
+  const showFeatured = !searchQuery && currentPage === 1;
 
   // Fetch featured post separately if needed
   const featuredPostPromise = showFeatured ? fetchPosts(1, 0) : Promise.resolve([]);
@@ -115,23 +115,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       {/* Featured Article - Only show on homepage without filters */}
       {featuredPost && <FeaturedArticle post={featuredPost} />}
 
-      <div className="bg-gray-50 py-12">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2
-              className="text-2xl font-black uppercase tracking-tighter text-gray-900"
-              style={{ fontFamily: 'var(--font-display)' }}
-            >
-              Find Content
-            </h2>
-            <div className="mt-4 h-1 w-16 bg-gray-900 mx-auto"></div>
-          </div>
-          <div className="grid grid-cols-1">
-            {/*<SearchBar initialQuery={searchQuery} />*/}
-            <CategoryFilter categories={categories} />
-          </div>
-        </div>
-      </div>
+      <CategoryFilter categories={categories} title="Find Content" />
 
       {/* Blog Posts Grid */}
       <div className="bg-white py-16 sm:py-24">
