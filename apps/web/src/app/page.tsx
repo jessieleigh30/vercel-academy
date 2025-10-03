@@ -48,7 +48,6 @@ export default async function HomePage() {
           href: '/about',
         }}
       />
-
       <Services services={services} />
       <StatsSection stats={companyStats} />
       <Testimonials testimonials={testimonials} />
