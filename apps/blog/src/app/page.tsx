@@ -126,8 +126,8 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             </h2>
             <div className="mt-4 h-1 w-16 bg-gray-900 mx-auto"></div>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <SearchBar initialQuery={searchQuery} />
+          <div className="grid grid-cols-1">
+            {/*<SearchBar initialQuery={searchQuery} />*/}
             <CategoryFilter categories={categories} />
           </div>
         </div>
